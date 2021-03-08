@@ -4,27 +4,44 @@ export class PageHome extends LitElement {
 
   constructor() {
     super();
+ //   this.addEventListener('login', this.login);
   }
 
   connectedCallback() {
     super.connectedCallback();
-    fetch('http://localhost:8080/secured') // the response is a stream, we need to parse it as json first
-    .then(response => {
-      if (response.status == 401) {
-         this.dispatchEvent(new CustomEvent('login', {detail: 'login'}));
-      }
-      response.json();
-    })
-    .then(response => {
-    // we now have the API response available as an object
-      console.log(response);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+          fetch('https://www.martinetherton.com:8443/secured') // the response is a stream, we need to parse it as json first
+          .then(response => {
+            if (response.status == 401) {
+               this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
+            }
+            response.json();
+          })
+          .then(response => {
+          // we now have the API response available as an object
+            console.log(response);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
   }
 
-
+  clickHandler() {
+      fetch('http://localhost:8080/secured') // the response is a stream, we need to parse it as json first
+      .then(response => {
+        if (response.status == 401) {
+           this.dispatchEvent(new CustomEvent('login', {detail: 'login'}));
+        }
+        response.json();
+      })
+      .then(response => {
+      // we now have the API response available as an object
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   static get styles() {
     return css`
@@ -72,8 +89,14 @@ export class PageHome extends LitElement {
   render() {
     return html`
    home page
+   <button @click="${this.clickHandler}">click</button>
     `;
   }
+
+//  login(ev) {
+//    ev.preventDefault();
+//    this.page = ev.detail;
+//  }
 
 }
 
