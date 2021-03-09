@@ -1,74 +1,47 @@
 import { LitElement, html, css } from 'lit-element';
-
+import '@material/mwc-textfield';
+import '@material/mwc-button';
+import '@material/mwc-icon';
 
 export class PageLogin extends LitElement {
 
   static get styles() {
     return css`
-      :host {
+      mwc-formfield {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      mwc-textfield {
         width: 100%;
       }
-      article {
-        padding: 5%;
-      }
-      mwc-list {
-        text-align: left;
+      mwc-button {
         width: 100%;
-        margin-top: -8px;
       }
-      .person {
-        height: 100%;
-      }
-      .person p, h3 {
-        padding: 0px;
-        margin: 0px;
-      }
-      mwc-list-item {
-        padding-top: 8px;
-        padding-bottom: 8px;
+      .fancy {
+        color: #03a9f4;
+        --mdc-icon-size: 100px;
       }
     `;
   }
 
-  static get properties() {
-    return {
-      persons: {type: Array},
-      firstName: {type: String},
-      surname: {type: String},
-    };
-  }
-
   constructor() {
     super();
-    this.persons = [];
-  }
-
-  __onNavClicked(ev) {
-    const person = this.persons.find(p => p.id === ev.currentTarget.id);
-    const father = this.persons.filter(p => p.childRelation.includes(person.parentRelation)).find(m => m.sex === "M")
-    const mother = this.persons.filter(p => p.childRelation.includes(person.parentRelation)).find(m => m.sex === "F")
-    if (father) {
-      person.father = {name: father.firstName + " " + father.surname, id: father.id}
-    } else {
-      person.father = {};
-    }
-    if (mother) {
-      person.mother = {name: mother.firstName + " " + mother.surname, id: mother.id}
-    } else {
-      person.mother = {};
-    }
-    store.dispatch(setPerson(person));
-    this.dispatchEvent(new CustomEvent('navigate', {detail: 'person'}));
-  }
-
-  formatDate(timestamp) {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(timestamp).toLocaleDateString('en-GB', options);
   }
 
   render() {
     return html`
-     login page
+      <mwc-formfield>
+        <mwc-icon class="fancy">account_circle</mwc-icon>
+      </mwc-formfield>
+      <mwc-formfield label="User Name">
+        <mwc-textfield outlined id="userName" label="User Name"></mwc-textfield>
+      </mwc-formfield>
+      <mwc-formfield label="Password">
+        <mwc-textfield outlined id="password" type="password" label="Password"></mwc-textfield>
+      </mwc-formfield>
+      <mwc-formfield label="Login">
+        <mwc-button id="login" raised label="Login"></mwc-button>
+      </mwc-formfield>
     `;
   }
 

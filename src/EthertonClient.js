@@ -6,8 +6,6 @@ import { PageLogin } from './PageLogin.js';
 
 export class EthertonClient extends LitElement {
 
-
-
   static get properties() {
     return {
       title: { type: String },
@@ -33,6 +31,7 @@ export class EthertonClient extends LitElement {
 
       main {
         flex-grow: 1;
+        width: 100%;
       }
 
       .logo > svg {
