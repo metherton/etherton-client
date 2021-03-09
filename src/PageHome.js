@@ -9,8 +9,8 @@ export class PageHome extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    // fetch('https://www.martinetherton.com:8443/secured')
-    fetch('http://localhost:8080/secured') // the response is a stream, we need to parse it as json first
+     fetch('https://www.martinetherton.com:8443/secured')
+    //fetch('http://localhost:8080/secured') // the response is a stream, we need to parse it as json first
     .then(response => {
       if (response.status == 401) {
         this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
