@@ -21,17 +21,32 @@ export class PageHome extends LitElement {
 
     // fetch('https://www.martinetherton.com:8443/secured')
  // the response is a stream, we need to parse it as json first
+    this.getLosers().then(response => {
+      //return response.json();
+      if (response.status == 401) {
+        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
+        return;
+      } else {
+        return response.json();
+      }
+    })
+    .then(data => {
+    // we now have the API response available as an object
 
+        this.losers = data;
+
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
-  getLosers() {
-    const response = fetch('http://localhost:8080/losers', {
-                            cache: 'no-cache',
-                           headers: {
-                           'Content-Type': 'application/json',
-                             'Authorization': 'Basic ' + Login.token
-                           }
-                         });
+  async getLosers() {
+    const response = await fetch('http://localhost:8080/losers', {
+      headers: {
+        'Authorization': 'Basic ' + Login.token
+      }
+    });
     return response;
   }
 
@@ -73,27 +88,6 @@ export class PageHome extends LitElement {
     `;
   }
 
-  handleClick(ev) {
-
-    return this.getLosers().then(response => {
-      if (response.status == 401) {
-        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-        return;
-      } else {
-        response.json();
-      }
-    })
-    .then(data => {
-    // we now have the API response available as an object
-
-        this.losers = data;
-
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
-
   __onNavClicked(ev) {
     const page = ev.currentTarget.id.split('-')[1];
     this.dispatchEvent(new CustomEvent('navigate', {detail: page}));
@@ -102,7 +96,6 @@ export class PageHome extends LitElement {
   render() {
     return html`
    home page
-   <button @click="${this.handleClick}">Click it</button>
          <ul>
            ${this.losers.map(loser => html`<li>${loser.companyName}</li>`)}
          </ul>
