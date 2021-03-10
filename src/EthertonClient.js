@@ -3,6 +3,7 @@ import { openWcLogo } from './open-wc-logo.js';
 
 import { PageHome } from './PageHome.js';
 import { PageLogin } from './PageLogin.js';
+import { Login } from './login.js';
 
 export class EthertonClient extends LitElement {
 
@@ -10,6 +11,7 @@ export class EthertonClient extends LitElement {
     return {
       title: { type: String },
       page: {type: String},
+      previousPage: {type: String},
     };
   }
 
@@ -32,6 +34,8 @@ export class EthertonClient extends LitElement {
       main {
         flex-grow: 1;
         width: 100%;
+        margin-left: 1rem;
+        margin-right: 1rem;
       }
 
       .logo > svg {
@@ -71,7 +75,7 @@ export class EthertonClient extends LitElement {
 
   render() {
     return html`
-      <main @login='${this.login}'>
+      <main @login='${this.login}' @loggedIn='${this.navigateToPage}'>
         ${this._renderPage()}
       </main>`;
   }
@@ -93,9 +97,14 @@ export class EthertonClient extends LitElement {
     }
   }
 
+  navigateToPage(ev) {
+    this.page = ev.detail;
+  }
+
   login(ev) {
 //    ev.preventDefault();
     this.page = ev.detail;
+    this.previousPage = ev.srcElement.localName.split("-")[1]
   }
 
   __navClass(page) {
