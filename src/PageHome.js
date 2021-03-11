@@ -1,7 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
 import { PageLogin } from './PageLogin.js';
 import { Login } from './login.js';
-import '@material/mwc-list';
+import { EthertonList } from './EthertonList.js';
+import { EthertonListItem } from './EthertonListItem.js';
 
 export class PageHome extends LitElement {
 
@@ -19,6 +20,8 @@ export class PageHome extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+
+//    this.losers = [{companyName: 'first'}, {companyName: 'second'}];
 
     // fetch('https://www.martinetherton.com:8443/secured')
  // the response is a stream, we need to parse it as json first
@@ -77,15 +80,6 @@ export class PageHome extends LitElement {
         color: #f1f1f1; /* Grey text */
         width: 100%; /* Full width */
       }
-
-      mwc-list {
-        width: 100%;
-        font-weight: bold;
-      }
-      mwc-list-item {
-        font-weight: bold;
-      }
-
     `;
   }
 
@@ -97,19 +91,14 @@ export class PageHome extends LitElement {
   render() {
     if (this.losers) {
     return html`
-       <mwc-list>
-         ${this.losers.map(loser => html`<mwc-list-item>${loser.companyName}</mwc-list-item>`)}
-       </mwc-list>`;
+       <etherton-list>
+         ${this.losers.map(loser => html`<etherton-list-item>${loser.companyName}</etherton-list-item>`)}
+       </etherton-list>`;
     } else {
       return html`no companies`;
     }
 
   }
-
-//  login(ev) {
-//    ev.preventDefault();
-//    this.page = ev.detail;
-//  }
 
 }
 

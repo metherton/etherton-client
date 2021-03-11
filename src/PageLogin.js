@@ -1,8 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
-import '@material/mwc-textfield';
-import '@material/mwc-button';
-import '@material/mwc-icon';
 import { Login } from './login.js';
+import { EthertonInput } from './EthertonInput.js';
+import { EthertonButton } from './EthertonButton.js';
 
 export class PageLogin extends LitElement {
 
@@ -16,20 +15,6 @@ export class PageLogin extends LitElement {
 
   static get styles() {
     return css`
-      mwc-formfield {
-        display: block;
-        margin-bottom: 1rem;
-      }
-      mwc-textfield {
-        width: 100%;
-      }
-      mwc-button {
-        width: 100%;
-      }
-      .fancy {
-        color: #03a9f4;
-        --mdc-icon-size: 100px;
-      }
     `;
   }
 
@@ -39,18 +24,9 @@ export class PageLogin extends LitElement {
 
   render() {
     return html`
-      <mwc-formfield>
-        <mwc-icon class="fancy">account_circle</mwc-icon>
-      </mwc-formfield>
-      <mwc-formfield label="User Name">
-        <mwc-textfield outlined id="userName" @change="${this.updateUserName}" label="User Name"></mwc-textfield>
-      </mwc-formfield>
-      <mwc-formfield label="Password">
-        <mwc-textfield outlined id="password" type="password" @change="${this.updatePassword}" label="Password"></mwc-textfield>
-      </mwc-formfield>
-      <mwc-formfield label="Login">
-        <mwc-button id="login" @click="${this.handleClick}" raised label="Login"></mwc-button>
-      </mwc-formfield>
+      <etherton-input @change="${this.updateUserName}"></etherton-input>
+      <etherton-input @change="${this.updatePassword}"></etherton-input>
+      <etherton-button id="login" @click="${this.handleClick}">Login</etherton-button>
     `;
   }
 
