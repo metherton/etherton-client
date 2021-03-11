@@ -58,14 +58,14 @@ export class PageHome extends LitElement {
   }
 
   render() {
-    if (this.losers) {
     return html`
-       <etherton-list>
-         ${this.losers.map(loser => html`<etherton-list-item>${loser.companyName}</etherton-list-item>`)}
-       </etherton-list>`;
-    } else {
-      return html`no companies`;
-    }
+        ${this.losers?
+        html`
+        <etherton-list>
+          ${this.losers.map(loser => html`<etherton-list-item>${loser.companyName}</etherton-list-item>`)}
+        </etherton-list>`:
+         html`no companies`}
+    `;
   }
 
 }
