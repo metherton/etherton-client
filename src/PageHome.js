@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { PageLogin } from './PageLogin.js';
 import { Login } from './login.js';
+import '@material/mwc-list';
 
 export class PageHome extends LitElement {
 
@@ -94,12 +95,15 @@ export class PageHome extends LitElement {
   }
 
   render() {
+    if (this.losers) {
     return html`
-   home page
-         <ul>
-           ${this.losers.map(loser => html`<li>${loser.companyName}</li>`)}
-         </ul>
-    `;
+       <mwc-list>
+         ${this.losers.map(loser => html`<mwc-list-item>${loser.companyName}</mwc-list-item>`)}
+       </mwc-list>`;
+    } else {
+      return html`no companies`;
+    }
+
   }
 
 //  login(ev) {
