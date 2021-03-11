@@ -15,18 +15,12 @@ export class PageHome extends LitElement {
   constructor() {
     super();
     this.losers = [];
- //   this.addEventListener('login', this.login);
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-//    this.losers = [{companyName: 'first'}, {companyName: 'second'}];
-
-    // fetch('https://www.martinetherton.com:8443/secured')
- // the response is a stream, we need to parse it as json first
     this.getLosers().then(response => {
-      //return response.json();
       if (response.status == 401) {
         this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
         return;
@@ -35,10 +29,7 @@ export class PageHome extends LitElement {
       }
     })
     .then(data => {
-    // we now have the API response available as an object
-
-        this.losers = data;
-
+      this.losers = data;
     })
     .catch(err => {
       console.log(err);
@@ -46,6 +37,7 @@ export class PageHome extends LitElement {
   }
 
   async getLosers() {
+    //fetch('https://www.martinetherton.com:8443/secured')
     const response = await fetch('http://localhost:8080/losers', {
       headers: {
         'Authorization': 'Basic ' + Login.token
@@ -56,30 +48,7 @@ export class PageHome extends LitElement {
 
   static get styles() {
     return css`
-      :host {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        font-size: calc(10px + 2vmin);
-        color: #1a2b42;
-        margin: 0 auto;
-        text-align: center;
-      }
-      .container {
-        position: relative;
-        max-width: 100%; /* Maximum width */
-        margin: 0 auto; /* Center it */
-      }
-      .container .content {
-        position: absolute; /* Position the background text */
-        bottom: 50%; /* At the bottom. Use top:0 to append it to the top */
-        background: rgb(0, 0, 0); /* Fallback color */
-        background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-        color: #f1f1f1; /* Grey text */
-        width: 100%; /* Full width */
-      }
+
     `;
   }
 
@@ -97,7 +66,6 @@ export class PageHome extends LitElement {
     } else {
       return html`no companies`;
     }
-
   }
 
 }
