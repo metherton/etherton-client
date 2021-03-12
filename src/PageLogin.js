@@ -42,7 +42,7 @@ export class PageLogin extends LitElement {
   // Example POST method implementation:
   async postData(url = '', data = {}) {
     // Default options are marked with *
-    Login.token = btoa(this.userName + ':' + this.password);
+    Login.authDetails = btoa(this.userName + ':' + this.password);
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
 //      mode: 'cors', // no-cors, *cors, same-origin
@@ -50,7 +50,7 @@ export class PageLogin extends LitElement {
 //      credentials: 'same-origin', // include, *same-origin, omit
       headers: {
 //        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa(this.userName + ':' + this.password)
+        'Authorization': 'Basic ' + Login.authDetails
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
 //      redirect: 'follow', // manual, *follow, error
@@ -65,6 +65,15 @@ export class PageLogin extends LitElement {
       .then(response => {
         if (response.status == 200) {
           Login.isAuthenticated = true;
+          for (var p of response.headers) {
+            if (p[0] === 'xsrf-token') {
+              Login.token = p[1];
+              document.cookie = 'xsrf-token=' + p[1];
+            }
+            if (p[0] === 'session-id') {
+              document.cookie = 'session-id=' + p[1];
+            }
+          }
           this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: 'home'}));
           return;
         }
