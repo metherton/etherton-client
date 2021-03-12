@@ -68,7 +68,6 @@ export class PageLogin extends LitElement {
           for (var p of response.headers) {
             if (p[0] === 'xsrf-token') {
               Login.token = p[1];
-              document.cookie = 'xsrf-token=' + p[1];
             }
             if (p[0] === 'session-id') {
               document.cookie = 'session-id=' + p[1];

@@ -40,7 +40,8 @@ export class PageHome extends LitElement {
     //fetch('https://www.martinetherton.com:8443/secured')
     const response = await fetch('https://localhost:8443/losers', {
       headers: {
-        'Authorization': 'Basic ' + Login.authDetails
+        'Authorization': 'Basic ' + Login.authDetails,
+        'XSRF-TOKEN': ' ' + Login.token
       }
     });
     return response;
