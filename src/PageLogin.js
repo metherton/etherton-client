@@ -45,6 +45,7 @@ export class PageLogin extends LitElement {
     Login.authDetails = btoa(this.userName + ':' + this.password);
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors',
 //      mode: 'cors', // no-cors, *cors, same-origin
 //      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
 //      credentials: 'same-origin', // include, *same-origin, omit
@@ -62,7 +63,8 @@ export class PageLogin extends LitElement {
 
   handleClick(e) {
     //this.postData('https://localhost:8443/login', { answer: 42 })
-    this.postData('http://localhost:8080/login', { answer: 42 })
+    //this.postData('http://localhost:8080/login', { answer: 42 })
+    this.postData('https://www.martinetherton.com:8443/login', { answer: 42 })
       .then(response => {
         if (response.status == 200) {
           Login.isAuthenticated = true;
