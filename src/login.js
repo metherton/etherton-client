@@ -1,6 +1,8 @@
 export class Login {
   static isAuthenticated = false;
-  static token = "";
+  static xCsrfToken = "";
   static authDetails = "";
+  static userName = "";
+  static sessionId = "";
 }
 

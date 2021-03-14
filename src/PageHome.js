@@ -23,10 +23,8 @@ export class PageHome extends LitElement {
     this.getLosers().then(response => {
       if (response.status == 401) {
         this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-        return;
-      } else {
-        return response.json();
       }
+      return response.json();
     })
     .then(data => {
       this.losers = data;
@@ -39,9 +37,10 @@ export class PageHome extends LitElement {
   async getLosers() {
     //fetch('https://www.martinetherton.com:8443/secured')
     const response = await fetch('https://localhost:8443/losers', {
+      credentials: 'include',
+      mode: 'cors',
       headers: {
-        'Authorization': 'Basic ' + Login.authDetails,
-        'XSRF-TOKEN': ' ' + Login.token
+        'x-csrf-token': Login.xCsrfToken
       }
     });
     return response;

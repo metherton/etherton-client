@@ -24,7 +24,7 @@
     "storybook:build": "build-storybook",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start:build": "npm run build && web-dev-server --root-dir dist --app-index index.html --open --compatibility none",
-    "start": "web-dev-server"
+    "start": "web-dev-server --port=80"
   },
   "name": "etherton-client",
   "version": "0.0.0",

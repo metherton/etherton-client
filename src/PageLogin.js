@@ -66,16 +66,20 @@ export class PageLogin extends LitElement {
         if (response.status == 200) {
           Login.isAuthenticated = true;
           for (var p of response.headers) {
-            if (p[0] === 'xsrf-token') {
-              Login.token = p[1];
-            }
-            if (p[0] === 'session-id') {
-              document.cookie = 'session-id=' + p[1];
+            if (p[0] === 'x-csrf-token') {
+              Login.xCsrfToken = p[1];
             }
           }
           this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: 'home'}));
-          return;
+          return response.json();
         }
+      })
+      .then(data => {
+        Login.userName = data.userName;
+        Login.sessionId = data.sessionId;
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
