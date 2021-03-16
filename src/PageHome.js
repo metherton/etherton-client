@@ -60,8 +60,7 @@ export class PageHome extends LitElement {
       credentials: 'include',
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'x-csrf-token': Login.xCsrfToken
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: body
     });
