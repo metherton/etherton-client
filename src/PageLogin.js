@@ -69,13 +69,13 @@ export class PageLogin extends LitElement {
     //this.postData('https://www.martinetherton.com:8443/login', { answer: 42 })
       .then(response => {
         if (response.status == 200) {
-          Login.isAuthenticated = true;
-          for (var p of response.headers) {
-            if (p[0] === 'x-csrf-token') {
-              Login.xCsrfToken = p[1];
-            }
-          }
-          this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: {page: 'home', xCsrfToken: Login && Login.xCsrfToken }}));
+//          Login.isAuthenticated = true;
+//          for (var p of response.headers) {
+//            if (p[0] === 'x-csrf-token') {
+//              Login.xCsrfToken = p[1];
+//            }
+//          }
+          this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: 'home'}));
           return response.json();
         }
       })

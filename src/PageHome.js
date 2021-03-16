@@ -51,7 +51,7 @@ export class PageHome extends LitElement {
 
 
   async getLosers() {
-    let body = 'xCsrfToken=' + this.xCsrfToken;
+    let body = 'xCsrfToken=' + Login.getXCsrfToken();
     //fetch('https://www.martinetherton.com:8443/secured')
     const response = await fetch('https://localhost:8443/losers', {
     //const response = await fetch('https://www.martinetherton.com:8443/losers', {

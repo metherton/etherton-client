@@ -52,8 +52,7 @@ export class EthertonClient extends LitElement {
   }
 
   navigateToPage(ev) {
-    this.page = ev.detail.page;
-    this.xCsrfToken = ev.detail.xCsrfToken;
+    this.page = ev.detail;
   }
 
   login(ev) {
