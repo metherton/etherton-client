@@ -75,7 +75,7 @@ export class PageLogin extends LitElement {
               Login.xCsrfToken = p[1];
             }
           }
-          this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: 'home'}));
+          this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: {page: 'home', xCsrfToken: Login && Login.xCsrfToken }}));
           return response.json();
         }
       })

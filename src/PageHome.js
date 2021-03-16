@@ -9,6 +9,7 @@ export class PageHome extends LitElement {
   static get properties() {
     return {
       losers: {type: Array},
+      xCsrfToken: {type: String}
     };
   }
 
@@ -37,15 +38,19 @@ export class PageHome extends LitElement {
 
 
   async getLosers() {
+    let body = 'xCsrfToken=' + this.xCsrfToken;
     //fetch('https://www.martinetherton.com:8443/secured')
     const response = await fetch('https://localhost:8443/losers', {
     //const response = await fetch('https://www.martinetherton.com:8443/losers', {
     //const response = await fetch('http://localhost:8080/losers', {
+      method: 'POST',
       credentials: 'include',
       mode: 'cors',
       headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
         'x-csrf-token': Login.xCsrfToken
-      }
+      },
+      body: body
     });
     return response;
   }
@@ -85,8 +90,8 @@ export class PageHome extends LitElement {
         ${this.losers?
         html`
         <button @click="${this.login}">login</button>
-
         <button @click="${this.handleLosers}">losers</button>
+
 
         <etherton-list>
           ${this.losers.map(loser => html`<etherton-list-item>${loser.companyName}</etherton-list-item>`)}

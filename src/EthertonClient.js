@@ -9,6 +9,7 @@ export class EthertonClient extends LitElement {
     return {
       page: {type: String},
       previousPage: {type: String},
+      xCsrfToken: {type: String}
     };
   }
 
@@ -37,7 +38,7 @@ export class EthertonClient extends LitElement {
     switch (this.page) {
       case 'home':
         return html`
-          <page-home></page-home>
+          <page-home .xCsrfToken='${this.xCsrfToken}'></page-home>
         `;
       case 'login':
         return html`
@@ -51,7 +52,8 @@ export class EthertonClient extends LitElement {
   }
 
   navigateToPage(ev) {
-    this.page = ev.detail;
+    this.page = ev.detail.page;
+    this.xCsrfToken = ev.detail.xCsrfToken;
   }
 
   login(ev) {
