@@ -20,6 +20,19 @@ export class PageHome extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this.getLosers().then(response => {
+      if (response.status == 401) {
+        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
+        return;
+      }
+      return response.json();
+    })
+    .then(data => {
+      this.losers = data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
 //    this.getLosers().then(response => {
 ////      if (response.status == 401) {
@@ -72,9 +85,6 @@ export class PageHome extends LitElement {
 
   handleLosers() {
     this.getLosers().then(response => {
-//      if (response.status == 401) {
-//        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-//      }
       return response.json();
     })
     .then(data => {
@@ -89,8 +99,7 @@ export class PageHome extends LitElement {
     return html`
         ${this.losers?
         html`
-        <button @click="${this.login}">login</button>
-        <button @click="${this.handleLosers}">losers</button>
+
 
 
         <etherton-list>
