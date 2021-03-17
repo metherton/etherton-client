@@ -20,35 +20,7 @@ export class PageHome extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.getLosers().then(response => {
-      if (response.status == 401) {
-        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-        return;
-      }
-      return response.json();
-    })
-    .then(data => {
-      this.losers = data;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-
-//    this.getLosers().then(response => {
-////      if (response.status == 401) {
-////        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-////      }
-//      return response.json();
-//    })
-//    .then(data => {
-//      this.losers = data;
-//    })
-//    .catch(err => {
-//      console.log(err);
-//    });
   }
-
-
 
   async getLosers() {
     let body = 'xCsrfToken=' + Login.getXCsrfToken();
@@ -69,7 +41,6 @@ export class PageHome extends LitElement {
 
   static get styles() {
     return css`
-
     `;
   }
 
@@ -82,8 +53,27 @@ export class PageHome extends LitElement {
     this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
   }
 
+  logout() {
+    fetch('https://localhost:8443/logout', {
+    //const response = await fetch('https://www.martinetherton.com:8443/losers', {
+    //const response = await fetch('http://localhost:8080/losers', {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors'
+    })
+    .then(data => {
+      console.log(data);
+    });
+    this.losers = undefined;
+    this.dispatchEvent(new CustomEvent('logout', {bubbles: true, detail: 'home'}));
+  }
+
   handleLosers() {
     this.getLosers().then(response => {
+      if (response.status == 401) {
+        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
+        return;
+      }
       return response.json();
     })
     .then(data => {
@@ -98,13 +88,11 @@ export class PageHome extends LitElement {
     return html`
         ${this.losers?
         html`
-
-
-
+        <button @click="${this.logout}">Logout</button><button @click="${this.handleLosers}">Get Losers</button>
         <etherton-list>
           ${this.losers.map(loser => html`<etherton-list-item>${loser.companyName}</etherton-list-item>`)}
         </etherton-list>`:
-         html`no companies`}
+         html`no companies&nbsp;<button @click="${this.handleLosers}">Get Losers</button>`}
     `;
   }
 

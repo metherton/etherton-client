@@ -29,7 +29,7 @@ export class EthertonClient extends LitElement {
 
   render() {
     return html`
-      <main @login='${this.login}' @loggedIn='${this.navigateToPage}'>
+      <main @logout='${this.logout}' @login='${this.login}' @loggedIn='${this.navigateToPage}'>
         ${this._renderPage()}
       </main>`;
   }
@@ -50,6 +50,10 @@ export class EthertonClient extends LitElement {
         `;
     }
   }
+
+    logout(ev) {
+      this.page = ev.detail;
+    }
 
   navigateToPage(ev) {
     this.page = ev.detail;
