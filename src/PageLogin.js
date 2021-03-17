@@ -15,6 +15,52 @@ export class PageLogin extends LitElement {
 
   static get styles() {
     return css`
+      :host {
+        background-image: linear-gradient(to right, DarkRed , FireBrick);
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .box {
+        border-radius: 2.5em;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        height: 80%;
+        background-image: linear-gradient(to right, HoneyDew , Ivory);
+      }
+
+      .form {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 80%;
+      }
+
+      etherton-button {
+
+        font-size: 1.5em;
+        color: black;
+      }
+
     `;
   }
 
@@ -24,9 +70,17 @@ export class PageLogin extends LitElement {
 
   render() {
     return html`
-      <etherton-input @change="${this.updateUserName}"></etherton-input>
-      <etherton-input @change="${this.updatePassword}"></etherton-input>
-      <etherton-button id="login" @click="${this.handleClick}">Login</etherton-button>
+      <main class="box"}>
+        <main class="header">
+          <h1>Welcome to Share News</h1>
+          <h2>Sign in</h2>
+        </main>
+        <main class="form">
+          <etherton-input @change="${this.updateUserName}"></etherton-input>
+          <etherton-input @change="${this.updatePassword}"></etherton-input>
+          <etherton-button id="login" @click="${this.handleClick}">Login</etherton-button>
+        </main>
+      </main>
     `;
   }
 
