@@ -10,6 +10,7 @@ export class PageLogin extends LitElement {
       isLoggedIn: { type: Boolean },
       page: {type: String},
       previousPage: {type: String},
+      loginError: { type: Boolean }
     };
   }
 
@@ -38,7 +39,7 @@ export class PageLogin extends LitElement {
       }
 
       .header {
-        height: 50%;
+        height: 55%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -86,11 +87,21 @@ export class PageLogin extends LitElement {
         font-weight: lighter;
       }
 
+      .error {
+        text-align: center;
+        color: red;
+      }
+
     `;
   }
 
   constructor() {
     super();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.loginError = false;
   }
 
   render() {
@@ -99,17 +110,26 @@ export class PageLogin extends LitElement {
         <main class="box"}>
           <main class="header">
             <h1 class="title">Welcome to Share News</h1>
+            <h3 class="error">${this.getUserMessage()}</h3>
             <h2 class="login">Sign in</h2>
           </main>
           <main class="form">
             <etherton-input @change="${this.updateUserName}"></etherton-input>
-            <etherton-input @change="${this.updatePassword}"></etherton-input>
+            <etherton-input type="password" @change="${this.updatePassword}"></etherton-input>
             <etherton-button id="login" @click="${this.handleClick}">Login</etherton-button>
           </main>
         </main>
       </div>
 
     `;
+  }
+
+  getUserMessage() {
+    if (this.loginError) {
+      return html`Incorrect user name or password`;
+    } else {
+      return html``;
+    }
   }
 
   updateUserName(e) {
@@ -141,8 +161,9 @@ export class PageLogin extends LitElement {
     //this.postData('http://localhost:8080/login', { answer: 42 })
     //this.postData('https://www.martinetherton.com:8443/login', { answer: 42 })
       .then(response => {
-        if (response.status == 401) {
+        if (response.status == 418) {
           console.log("failed to login");
+          this.loginError = true;
           return;
         } else if (response.status == 200) {
           this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: 'home'}));
