@@ -25,40 +25,62 @@ export class PageLogin extends LitElement {
         width: 100%;
         height: 100%;
         display: flex;
-        justify-content: center;
         align-items: center;
+        flex-direction: column;
+      }
+
+      .box-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+        width: 35%;
       }
 
       .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .box {
-        border-radius: 2.5em;
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-        align-items: center;
-        width: 60%;
-        height: 80%;
-        background-image: linear-gradient(to right, HoneyDew , Ivory);
-      }
-
-      .form {
+        background: green;
         height: 50%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        width: 80%;
+        justify-content: space-between;
+      }
+
+      .box {
+        border-radius: 1.5em;
+        width: 100%;
+        height: 60%;
+        background-image: linear-gradient(to right, HoneyDew , Ivory);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .form-container {
+        display: flex;
+
+      }
+
+      .form {
+        background: yellow;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       etherton-button {
-
         font-size: 1.5em;
         color: black;
+        width: 75%;
+      }
+
+      etherton-input {
+        width:80%;
+      }
+
+      .title, .login {
+        text-align: center;
+        font-weight: lighter;
       }
 
     `;
@@ -70,17 +92,20 @@ export class PageLogin extends LitElement {
 
   render() {
     return html`
-      <main class="box"}>
-        <main class="header">
-          <h1>Welcome to Share News</h1>
-          <h2>Sign in</h2>
+      <div class="box-container">
+        <main class="box"}>
+          <main class="header">
+            <h1 class="title">Welcome to Share News</h1>
+            <h2 class="login">Sign in</h2>
+          </main>
+          <main class="form">
+            <etherton-input @change="${this.updateUserName}"></etherton-input>
+            <etherton-input @change="${this.updatePassword}"></etherton-input>
+            <etherton-button id="login" @click="${this.handleClick}">Login</etherton-button>
+          </main>
         </main>
-        <main class="form">
-          <etherton-input @change="${this.updateUserName}"></etherton-input>
-          <etherton-input @change="${this.updatePassword}"></etherton-input>
-          <etherton-button id="login" @click="${this.handleClick}">Login</etherton-button>
-        </main>
-      </main>
+      </div>
+
     `;
   }
 
