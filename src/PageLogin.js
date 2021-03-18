@@ -80,6 +80,7 @@ export class PageLogin extends LitElement {
 
       etherton-button:hover {
         background: darkgreen;
+        cursor: pointer;
       }
 
       .title, .login {
