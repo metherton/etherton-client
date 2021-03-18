@@ -38,7 +38,6 @@ export class PageLogin extends LitElement {
       }
 
       .header {
-        background: green;
         height: 50%;
         display: flex;
         flex-direction: column;
@@ -61,11 +60,11 @@ export class PageLogin extends LitElement {
       }
 
       .form {
-        background: yellow;
         height: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: center;
       }
 
       etherton-button {
@@ -76,6 +75,10 @@ export class PageLogin extends LitElement {
 
       etherton-input {
         width:80%;
+      }
+
+      etherton-button:hover {
+        background: darkgreen;
       }
 
       .title, .login {
@@ -123,21 +126,12 @@ export class PageLogin extends LitElement {
     // Default options are marked with *
     Login.authDetails = btoa(this.userName + ':' + this.password);
     const response = await fetch(url, {
-          credentials: 'include',
+      credentials: 'include',
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors',
-//      mode: 'cors', // no-cors, *cors, same-origin
-//      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-//      credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-
-//        'Content-Type': 'application/json',
         'Authorization': 'Basic ' + Login.authDetails
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-//      redirect: 'follow', // manual, *follow, error
-//      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-//      body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     return response; // parses JSON response into native JavaScript objects
   }
@@ -147,20 +141,13 @@ export class PageLogin extends LitElement {
     //this.postData('http://localhost:8080/login', { answer: 42 })
     //this.postData('https://www.martinetherton.com:8443/login', { answer: 42 })
       .then(response => {
-        if (response.status == 200) {
-//          Login.isAuthenticated = true;
-//          for (var p of response.headers) {
-//            if (p[0] === 'x-csrf-token') {
-//              Login.xCsrfToken = p[1];
-//            }
-//          }
+        if (response.status == 401) {
+          console.log("failed to login");
+          return;
+        } else if (response.status == 200) {
           this.dispatchEvent(new CustomEvent('loggedIn', {bubbles: true, detail: 'home'}));
           return response.json();
         }
-      })
-      .then(data => {
-        Login.userName = data.userName;
-        Login.sessionId = data.sessionId;
       })
       .catch(err => {
         console.log(err);

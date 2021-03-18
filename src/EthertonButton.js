@@ -9,7 +9,7 @@ export class EthertonButton extends LionButton {
       css`
         :host {
           border-radius: 1em;
-          background-image: linear-gradient(to right, DarkGrey , Grey);
+          background-image: linear-gradient(to right, Green , ForestGreen);
           padding: 0.5em;
           width: 100%;
           display: flex;
