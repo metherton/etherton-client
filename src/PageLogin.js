@@ -171,6 +171,11 @@ export class PageLogin extends LitElement {
           return response.json();
         }
       })
+      .then(data => {
+        if (data) {
+          Login.xsrfToken = data.xsrfToken;
+        }
+      })
       .catch(err => {
         console.log(err);
       });

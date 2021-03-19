@@ -23,7 +23,7 @@ export class PageHome extends LitElement {
   }
 
   async getLosers() {
-    let body = 'xCsrfToken=' + Login.getXCsrfToken();
+    let body = 'xCsrfToken=' + Login.xsrfToken;
     //fetch('https://www.martinetherton.com:8443/secured')
     //const response = await fetch('https://localhost:8443/losers', {
     const response = await fetch('https://www.martinetherton.com:8443/losers', {
@@ -54,12 +54,17 @@ export class PageHome extends LitElement {
   }
 
   logout() {
+    let body = 'xCsrfToken=' + Login.xsrfToken;
     //fetch('https://localhost:8443/logout', {
     fetch('https://www.martinetherton.com:8443/logout', {
     //const response = await fetch('http://localhost:8080/losers', {
       method: 'POST',
       credentials: 'include',
-      mode: 'cors'
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: body
     })
     .then(data => {
       console.log(data);
