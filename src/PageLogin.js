@@ -158,9 +158,9 @@ export class PageLogin extends LitElement {
   }
 
   handleClick(e) {
-    //this.postData('https://localhost:8443/login', { answer: 42 })
+    this.postData('https://localhost:8443/login', { answer: 42 })
     //this.postData('http://localhost:8080/login', { answer: 42 })
-    this.postData('https://www.martinetherton.com:8443/login', { answer: 42 })
+    //this.postData('https://www.martinetherton.com:8443/login', { answer: 42 })
       .then(response => {
         if (response.status == 418) {
           console.log("failed to login");
@@ -173,7 +173,7 @@ export class PageLogin extends LitElement {
       })
       .then(data => {
         if (data) {
-          Login.xsrfToken = data.xsrfToken;
+          Login.xCsrfToken = data.xCsrfToken;
         }
       })
       .catch(err => {
