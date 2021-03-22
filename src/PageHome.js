@@ -46,13 +46,9 @@ export class PageHome extends LitElement {
     //const response = await fetch('http://localhost:8080/losers', {
     const response = await fetch('http://www.martinetherton.com:8080/losers', {
 
-      method: 'POST',
+      method: 'GET',
       credentials: 'include',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: body
+      mode: 'cors'
     });
     return response;
   }
