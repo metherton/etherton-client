@@ -43,8 +43,8 @@ export class PageHome extends LitElement {
     //fetch('https://www.martinetherton.com:8443/secured')
    // const response = await fetch('https://localhost:8443/losers', {
     //const response = await fetch('https://www.martinetherton.com:8443/losers', {
-    //const response = await fetch('http://localhost:8080/losers', {
-    const response = await fetch('http://www.martinetherton.com:8080/losers', {
+    const response = await fetch('http://localhost:8080/losers', {
+    //const response = await fetch('http://www.martinetherton.com:8080/losers', {
 
       method: 'GET',
       credentials: 'include',
