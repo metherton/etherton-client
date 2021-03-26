@@ -43,7 +43,7 @@ export class PageHome extends LitElement {
     //fetch('https://www.martinetherton.com:8443/secured')
    // const response = await fetch('https://localhost:8443/losers', {
     //const response = await fetch('https://www.martinetherton.com:8443/losers', {
-    const response = await fetch('http://localhost:8080/losers', {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/losers', {
     //const response = await fetch('http://www.martinetherton.com:8080/losers', {
 
       method: 'GET',
@@ -70,7 +70,7 @@ export class PageHome extends LitElement {
   logout() {
     let body = 'xCsrfToken=' + Login.xCsrfToken || "";
     //fetch('http://localhost:8080/logout', {
-    fetch('http://www.martinetherton.com:8080/logout', {
+    fetch(APP_CONFIG.BASE_API_URL + '/logout', {
     //fetch('https://localhost:8443/logout', {
     //fetch('https://www.martinetherton.com:8443/logout', {
     //const response = await fetch('http://localhost:8080/losers', {
