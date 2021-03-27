@@ -25,9 +25,11 @@ export class EthertonClient extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    fetch('config.json')
-      .then(response => response.json())
-      .then(response => window.APP_CONFIG = response)
+    if (APP_CONFIG === undefined) {
+      fetch('/config.json')
+        .then(response => response.json())
+        .then(response => window.APP_CONFIG = response)
+    }
   }
 
   render() {
