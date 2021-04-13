@@ -1,41 +1,45 @@
 import { LitElement, html, css } from 'lit-element';
 import { PageLogin } from './PageLogin.js';
 import { Login } from './login.js';
-import { EthertonList } from './EthertonList.js';
-import { EthertonListItem } from './EthertonListItem.js';
+import { ProfileList } from './ProfileList.js';
+import { ProfileItem } from './ProfileItem.js';
 
 export class PageHome extends LitElement {
 
   static get properties() {
     return {
-      losers: {type: Array},
-      xCsrfToken: {type: String}
+      profiles: {type: Array}
     };
   }
 
   constructor() {
     super();
-    this.losers = [];
+    this.profiles = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
   }
 
-  handleLosers() {
-    this.getLosers().then(response => {
-      if (response.status == 401) {
-        this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-        return;
-      }
+  handleProfiles() {
+    this.getProfiles().then(response => {
       return response.json();
     })
     .then(data => {
-      this.losers = data;
+      this.profiles = data;
     })
     .catch(err => {
       console.log(err);
     });
+  }
+
+  async getProfiles() {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/profiles', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    });
+    return response;
   }
 
   async getLosers() {
@@ -91,19 +95,14 @@ export class PageHome extends LitElement {
 
   render() {
     return html`
-        ${this.losers?
+        ${this.profiles?
         html`
-        <button @click="${this.logout}">Logout</button><button @click="${this.handleLosers}">Get Losers</button>
-        <etherton-list>
-          ${this.losers.map(loser => html`
-          <etherton-list-item>${loser.companyName}</etherton-list-item>
-          <etherton-list-item>${loser.changes}</etherton-list-item>
-          <etherton-list-item>${loser.changesPercentage}</etherton-list-item>
-          <etherton-list-item>${loser.price}</etherton-list-item>
-          <etherton-list-item>${loser.ticker}</etherton-list-item>
+        <profile-list>
+          ${this.profiles.map(profile => html`
+          <profile-item>${profile.description}</profile-item>
           `)}
-        </etherton-list>`:
-         html`no companies&nbsp;<button @click="${this.handleLosers}">Get Losers</button>`}
+        </profile-list>`:
+         html`no companies&nbsp;`}
     `;
   }
 

@@ -9,7 +9,8 @@ export class EthertonClient extends LitElement {
     return {
       page: {type: String},
       previousPage: {type: String},
-      xCsrfToken: {type: String}
+      xCsrfToken: {type: String},
+      profiles: {type: Array}
     };
   }
 
@@ -21,13 +22,46 @@ export class EthertonClient extends LitElement {
   constructor() {
     super();
     this.page = 'home';
+    this.profiles = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
     fetch('/config.json')
-      .then(response => response.json())
-      .then(response => window.APP_CONFIG = response)
+    .then(response => response.json())
+    .then(data => {
+      window.APP_CONFIG = data
+    })
+    .then(() => {
+      return this.getProfiles();
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.profiles = data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+  async getLosers() {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/losers', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    });
+    return response;
+  }
+
+  async getProfiles() {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/profiles', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    });
+    return response;
   }
 
   render() {
@@ -41,7 +75,7 @@ export class EthertonClient extends LitElement {
     switch (this.page) {
       case 'home':
         return html`
-          <page-home .xCsrfToken='${this.xCsrfToken}'></page-home>
+          <page-home .profiles='${this.profiles}' .xCsrfToken='${this.xCsrfToken}'></page-home>
         `;
       case 'login':
         return html`

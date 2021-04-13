@@ -1,7 +1,7 @@
 import { css } from '@lion/core';
 import { LitElement, html } from 'lit-element';
 
-export class EthertonList extends LitElement {
+export class ProfileList extends LitElement {
   static get styles() {
     return css`
 
@@ -13,4 +13,4 @@ export class EthertonList extends LitElement {
   }
 
 }
-customElements.define('etherton-list', EthertonList);
+customElements.define('profile-list', ProfileList);
