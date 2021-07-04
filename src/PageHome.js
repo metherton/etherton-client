@@ -52,13 +52,19 @@ export class PageHome extends LitElement {
     return css`
     `;
   }
+
+  formatName(firstName, surname) {
+    return firstName + " " + surname
+  }
+
+
   render() {
     return html`
         ${this.persons?
         html`
         <person-list>
           ${this.persons.map(person => html`
-          <person-item>${person.firstName}</person-item>
+          <person-item .name=${this.formatName(person.firstName, person.surname)}></person-item>
           `)}
         </person-list>`:
          html`no persons&nbsp;`}
