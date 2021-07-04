@@ -17,28 +17,36 @@ export class PageHome extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+//    this.getPersons()
+//    .then(response => response.json())
+//    .then(data => {
+//      this.persons = data
+//    })
+//    .catch(err => {
+//      console.log(err);
+//    });
   }
 
-  handlePersons() {
-    this.getPersons().then(response => {
-      return response.json();
-    })
-    .then(data => {
-      this.persons = data;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
+//  handlePersons() {
+//    this.getPersons().then(response => {
+//      return response.json();
+//    })
+//    .then(data => {
+//      this.persons = data;
+//    })
+//    .catch(err => {
+//      console.log(err);
+//    });
+//  }
 
-  async getPersons() {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
-      method: 'GET',
-      credentials: 'include',
-      mode: 'cors'
-    });
-    return response;
-  }
+//  async getPersons() {
+//    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
+//      method: 'GET',
+//      credentials: 'include',
+//      mode: 'cors'
+//    });
+//    return response;
+//  }
 
   static get styles() {
     return css`

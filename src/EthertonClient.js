@@ -10,7 +10,7 @@ export class EthertonClient extends LitElement {
       page: {type: String},
       previousPage: {type: String},
       xCsrfToken: {type: String},
-      profiles: {type: Array}
+      persons: {type: Array}
     };
   }
 
@@ -30,7 +30,7 @@ export class EthertonClient extends LitElement {
     fetch('/config.json')
     .then(response => response.json())
     .then(data => {
-      window.APP_CONFIG = data
+      return window.APP_CONFIG = data
     })
     .then(() => {
       return this.getPersons();
