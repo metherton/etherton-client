@@ -1,55 +1,38 @@
 import { LitElement, html, css } from 'lit-element';
-import { PageLogin } from './PageLogin.js';
-import { Login } from './login.js';
-import { ProfileList } from './ProfileList.js';
-import { ProfileItem } from './ProfileItem.js';
+import { PersonList } from './PersonList.js';
+import { PersonItem } from './PersonItem.js';
 
 export class PageHome extends LitElement {
 
   static get properties() {
     return {
-      profiles: {type: Array}
+      persons: {type: Array}
     };
   }
 
   constructor() {
     super();
-    this.profiles = [];
+    this.persons = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
   }
 
-  handleProfiles() {
-    this.getProfiles().then(response => {
+  handlePersons() {
+    this.getPersons().then(response => {
       return response.json();
     })
     .then(data => {
-      this.profiles = data;
+      this.persons = data;
     })
     .catch(err => {
       console.log(err);
     });
   }
 
-  async getProfiles() {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/profiles', {
-      method: 'GET',
-      credentials: 'include',
-      mode: 'cors'
-    });
-    return response;
-  }
-
-  async getLosers() {
-    let body = 'xCsrfToken=' + Login.xCsrfToken || "";
-    //fetch('https://www.martinetherton.com:8443/secured')
-   // const response = await fetch('https://localhost:8443/losers', {
-    //const response = await fetch('https://www.martinetherton.com:8443/losers', {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/losers', {
-    //const response = await fetch('http://www.martinetherton.com:8080/losers', {
-
+  async getPersons() {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'
@@ -61,48 +44,16 @@ export class PageHome extends LitElement {
     return css`
     `;
   }
-
-  __onNavClicked(ev) {
-    const page = ev.currentTarget.id.split('-')[1];
-    this.dispatchEvent(new CustomEvent('navigate', {detail: page}));
-  }
-
-  login() {
-    this.dispatchEvent(new CustomEvent('login', {bubbles: true, detail: 'login'}));
-  }
-
-  logout() {
-    let body = 'xCsrfToken=' + Login.xCsrfToken || "";
-    //fetch('http://localhost:8080/logout', {
-    fetch(APP_CONFIG.BASE_API_URL + '/logout', {
-    //fetch('https://localhost:8443/logout', {
-    //fetch('https://www.martinetherton.com:8443/logout', {
-    //const response = await fetch('http://localhost:8080/losers', {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: body
-    })
-    .then(data => {
-      console.log(data);
-    });
-    this.losers = undefined;
-    this.dispatchEvent(new CustomEvent('logout', {bubbles: true, detail: 'home'}));
-  }
-
   render() {
     return html`
-        ${this.profiles?
+        ${this.persons?
         html`
-        <profile-list>
-          ${this.profiles.map(profile => html`
-          <profile-item>${profile.description}</profile-item>
+        <person-list>
+          ${this.persons.map(person => html`
+          <person-item>${person.firstName}</person-item>
           `)}
-        </profile-list>`:
-         html`no companies&nbsp;`}
+        </person-list>`:
+         html`no persons&nbsp;`}
     `;
   }
 

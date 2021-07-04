@@ -1,7 +1,7 @@
 import { css } from '@lion/core';
 import { LitElement, html } from 'lit-element';
 
-export class ProfileItem extends LitElement {
+export class PersonItem extends LitElement {
   static get styles() {
     return css`
       :host {
@@ -11,7 +11,7 @@ export class ProfileItem extends LitElement {
   }
 
   render() {
-    return html`<slot>profile item</slot>`;
+    return html`<slot>person item</slot>`;
   }
 }
-customElements.define('profile-item', ProfileItem);
+customElements.define('person-item', PersonItem);

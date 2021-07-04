@@ -22,7 +22,7 @@ export class EthertonClient extends LitElement {
   constructor() {
     super();
     this.page = 'home';
-    this.profiles = [];
+    this.persons = [];
   }
 
   connectedCallback() {
@@ -33,30 +33,21 @@ export class EthertonClient extends LitElement {
       window.APP_CONFIG = data
     })
     .then(() => {
-      return this.getProfiles();
+      return this.getPersons();
     })
     .then(response => {
       return response.json();
     })
     .then(data => {
-      this.profiles = data;
+      this.persons = data;
     })
     .catch(err => {
       console.log(err);
     });
   }
 
-  async getLosers() {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/losers', {
-      method: 'GET',
-      credentials: 'include',
-      mode: 'cors'
-    });
-    return response;
-  }
-
-  async getProfiles() {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/profiles', {
+  async getPersons() {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'
@@ -66,7 +57,7 @@ export class EthertonClient extends LitElement {
 
   render() {
     return html`
-      <main @logout='${this.logout}' @login='${this.login}' @loggedIn='${this.navigateToPage}'>
+      <main>
         ${this._renderPage()}
       </main>`;
   }
@@ -75,30 +66,13 @@ export class EthertonClient extends LitElement {
     switch (this.page) {
       case 'home':
         return html`
-          <page-home .profiles='${this.profiles}' .xCsrfToken='${this.xCsrfToken}'></page-home>
-        `;
-      case 'login':
-        return html`
-          <page-login></page-login>
+          <page-home .persons='${this.persons}'></page-home>
         `;
       default:
         return html`
           <p>Page not found try going to <a href="#home">Home</a></p>
         `;
     }
-  }
-
-    logout(ev) {
-      this.page = ev.detail;
-    }
-
-  navigateToPage(ev) {
-    this.page = ev.detail;
-  }
-
-  login(ev) {
-    this.page = ev.detail;
-    this.previousPage = ev.srcElement.localName.split("-")[1]
   }
 
 
