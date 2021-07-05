@@ -57,6 +57,13 @@ export class PageHome extends LitElement {
     return firstName + " " + surname
   }
 
+  formatAddress(address, city, country) {
+    return address + ", " + city + ", " + country;
+  }
+
+  formatBirthDate(birthDate) {
+    return new Date(birthDate).toLocaleDateString("en-US");
+  }
 
   render() {
     return html`
@@ -64,7 +71,8 @@ export class PageHome extends LitElement {
         html`
         <person-list>
           ${this.persons.map(person => html`
-          <person-item .name=${this.formatName(person.firstName, person.surname)}></person-item>
+          <person-item .name=${this.formatName(person.firstName, person.surname)}
+          .birthDate=${this.formatBirthDate(person.dateOfBirth)} .address=${this.formatAddress(person.address, person.city, person.country)}></person-item>
           `)}
         </person-list>`:
          html`no persons&nbsp;`}

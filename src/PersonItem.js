@@ -5,7 +5,9 @@ export class PersonItem extends LitElement {
 
   static get properties() {
     return {
-      name: String
+      name: String,
+      address: String,
+      birthDate: String
     };
   }
 
@@ -19,7 +21,11 @@ export class PersonItem extends LitElement {
 
   render() {
     return html`<h2>${this.name}</h2>
-    <div style="display:flex;align-content:space-between;width:100%"><h4 style="width:50%">Birth</h4><h4 style="width:50%">Residence</h4></div>`;
+    <div style="display:flex;align-content:space-between;width:100%">
+    <section style="width:50%"><h4>Birth</h4>${this.address}
+    </section>
+    <section style="width:50%"><h4>Residence</h4>${this.birthDate}
+    </section>`;
   }
 }
 customElements.define('person-item', PersonItem);
