@@ -4,5 +4,4 @@ FROM nginx
 RUN mkdir /etc/nginx/certs
 COPY dist /usr/share/nginx/html
 COPY server.conf /etc/nginx/conf.d
-COPY nginx.key /etc/nginx/certs
-COPY nginx-certificate.crt /etc/nginx/certs
+
