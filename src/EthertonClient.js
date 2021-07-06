@@ -47,7 +47,7 @@ export class EthertonClient extends LitElement {
   }
 
   async getPersons() {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
+    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/persons', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'
