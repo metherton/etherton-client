@@ -32,12 +32,12 @@ export class EthertonClient extends LitElement {
     .then(data => {
       return window.APP_CONFIG = data
     })
-    .then(() => {
-      return this.getHello();
-    })
 //    .then(() => {
-//      return this.getPersons();
+//      return this.getHello();
 //    })
+    .then(() => {
+      return this.getPersons();
+    })
 //    .then(response => {
 //      return response.json();
 //    })
@@ -59,7 +59,7 @@ export class EthertonClient extends LitElement {
   }
 
   async getPersons() {
-    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/persons', {
+    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/persons', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'
