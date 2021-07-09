@@ -38,12 +38,12 @@ export class EthertonClient extends LitElement {
     .then(() => {
       return this.getPersons();
     })
-//    .then(response => {
-//      return response.json();
-//    })
-//    .then(data => {
-//      this.persons = data;
-//    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.persons = data;
+    })
     .catch(err => {
       console.log(err);
     });
