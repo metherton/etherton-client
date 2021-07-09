@@ -50,7 +50,7 @@ export class EthertonClient extends LitElement {
   }
 
   async getHello() {
-    const res = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/hello', {
+    const res = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/hello', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'

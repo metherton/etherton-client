@@ -1,4 +1,4 @@
 {
   "BASE_API_URL": "http://www.martinetherton.com:8080",
-  "BASE_API_SECURE_URL": "https://www.martinetherton.com:8443"
+  "BASE_API_SECURE_URL": "https://www.martinetherton.com"
 }
