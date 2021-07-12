@@ -35,15 +35,15 @@ export class EthertonClient extends LitElement {
 //    .then(() => {
 //      return this.getHello();
 //    })
-    .then(() => {
-      return this.getPersons();
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      this.persons = data;
-    })
+//    .then(() => {
+//      return this.getPersons();
+//    })
+//    .then(response => {
+//      return response.json();
+//    })
+//    .then(data => {
+//      this.persons = data;
+//    })
     .catch(err => {
       console.log(err);
     });
@@ -69,8 +69,8 @@ export class EthertonClient extends LitElement {
 
   render() {
     return html`
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <main>
-        <h3>People</h3>
         ${this._renderPage()}
       </main>`;
   }

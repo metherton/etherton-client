@@ -6,13 +6,13 @@ export class PageHome extends LitElement {
 
   static get properties() {
     return {
-      persons: {type: Array}
+//      persons: {type: Array}
     };
   }
 
   constructor() {
     super();
-    this.persons = [];
+//    this.persons = [];
   }
 
   connectedCallback() {
@@ -50,6 +50,7 @@ export class PageHome extends LitElement {
 
   static get styles() {
     return css`
+
     `;
   }
 
@@ -67,15 +68,36 @@ export class PageHome extends LitElement {
 
   render() {
     return html`
-        ${this.persons?
-        html`
-        <person-list>
-          ${this.persons.map(person => html`
-          <person-item .name=${this.formatName(person.firstName, person.surname)}
-          .birthDate=${this.formatBirthDate(person.dateOfBirth)} .address=${this.formatAddress(person.address, person.city, person.country)}></person-item>
-          `)}
-        </person-list>`:
-         html`no persons&nbsp;`}
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+      <div class="w3-container w3-margin">
+        <div class="w3-card-4 w3-border">
+          <div class="w3-container w3-theme">
+            <h2>Search</h2>
+          </div>
+          <form class="w3-container">
+            <p>
+              <label>First Name</label>
+              <input class="w3-input" type="text">
+            </p>
+            <p>
+              <label>Last Name</label>
+              <input class="w3-input" type="text">
+            </p>
+            <p>
+              <label>Place your ancestor might have lived</label>
+              <input class="w3-input" type="text">
+            </p>
+            <p>
+              <label>Birth Year</label>
+              <input class="w3-input" type="text">
+            </p>
+            <p>
+              <input class="w3-btn w3-block w3-theme-d1" type="button" value="Search">
+            </p>
+          </form>
+        </div>
+      </div>
     `;
   }
 
