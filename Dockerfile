@@ -4,6 +4,5 @@ FROM nginx
 RUN mkdir /var/www
 RUN mkdir /var/www/certbot
 COPY dist /usr/share/nginx/html
-COPY dist /var/www/certbot
 # COPY server.conf /etc/nginx/conf.d
 

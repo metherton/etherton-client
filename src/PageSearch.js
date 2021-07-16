@@ -73,7 +73,7 @@ export class PageSearch extends LitElement {
       <div class="w3-container w3-margin">
 
         <div class="w3-container w3-theme-l4">
-          <h2>Search</h2>
+          <h2>Search Criteria</h2>
         </div>
         <form class="w3-container">
           <p>
@@ -93,7 +93,7 @@ export class PageSearch extends LitElement {
             <input class="w3-input" type="text">
           </p>
           <p>
-            <input class="w3-btn w3-block w3-theme-d1" type="button" value="Search">
+            <input class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
           </p>
         </form>
       </div>
