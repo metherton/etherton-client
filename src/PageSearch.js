@@ -6,51 +6,21 @@ export class PageSearch extends LitElement {
 
   static get properties() {
     return {
-//      persons: {type: Array}
+      persons: {type: Array}
     };
   }
 
   constructor() {
     super();
-//    this.persons = [];
+    this.persons = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
-//    this.getPersons()
-//    .then(response => response.json())
-//    .then(data => {
-//      this.persons = data
-//    })
-//    .catch(err => {
-//      console.log(err);
-//    });
   }
-
-//  handlePersons() {
-//    this.getPersons().then(response => {
-//      return response.json();
-//    })
-//    .then(data => {
-//      this.persons = data;
-//    })
-//    .catch(err => {
-//      console.log(err);
-//    });
-//  }
-
-//  async getPersons() {
-//    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
-//      method: 'GET',
-//      credentials: 'include',
-//      mode: 'cors'
-//    });
-//    return response;
-//  }
 
   static get styles() {
     return css`
-
     `;
   }
 
@@ -64,6 +34,28 @@ export class PageSearch extends LitElement {
 
   formatBirthDate(birthDate) {
     return new Date(birthDate).toLocaleDateString("en-US");
+  }
+
+  async getPersons() {
+    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/persons', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    });
+    return response;
+  }
+
+  _doSearch() {
+    this.getPersons().then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.persons = data;
+
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   render() {
@@ -93,10 +85,18 @@ export class PageSearch extends LitElement {
             <input class="w3-input" type="text">
           </p>
           <p>
-            <input class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
+            <input @click=${this._doSearch} class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
           </p>
         </form>
       </div>
+      <person-list>
+        ${this.persons.map(person => html`
+        <person-item
+          .firstName=${person.firstName}
+          .surname=${person.surname}
+          .birthDate=${person.birthDate}></person-item>
+        `)}
+      </person-list>
     `;
   }
 
