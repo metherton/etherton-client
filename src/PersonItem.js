@@ -7,7 +7,8 @@ export class PersonItem extends LitElement {
     return {
       firstName: String,
       surname: String,
-      birthDate: String
+      birthDate: String,
+      address: String,
     };
   }
 
@@ -19,14 +20,27 @@ export class PersonItem extends LitElement {
     `;
   }
 
+  formatBirthDate() {
+    return new Date(this.birthDate).toLocaleDateString("en-US");
+  }
+
   render() {
-    return html`<h2>${this.name}</h2>
-    <div style="display:flex;align-content:space-between;width:100%">
-    ${this.firstName}&nbsp;${this.surname}
-    <section style="width:50%"><h4>Birth Date</h4>${this.birthDate}
-    </section>
-    <section style="width:50%"><h4>Residence</h4>${this.birthDate}
-    </section>`;
+    return html`
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+    <div class="w3-container w3-mobile">
+      <div class="w3-container">
+        <div class="w3-card w3-theme-l4">
+          <h2 class="w3-container w3-padding-16 w3-mobile">${this.firstName}&nbsp;${this.surname}</h2>
+          <div class="w3-container w3-mobile" style="display:flex;align-content:space-between;width:100%">
+            <section class="w3-container w3-padding-16 w3-mobile" style="width:50%"><h4>Birth Date</h4>${this.formatBirthDate()}
+            </section>
+            <section class="w3-container w3-padding-16 w3-mobile" style="width:50%"><h4>Residence</h4>${this.address}
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>`;
   }
 }
 customElements.define('person-item', PersonItem);

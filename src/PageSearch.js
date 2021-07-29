@@ -94,7 +94,8 @@ export class PageSearch extends LitElement {
         <person-item
           .firstName=${person.firstName}
           .surname=${person.surname}
-          .birthDate=${person.birthDate}></person-item>
+          .birthDate=${person.dateOfBirth}
+          .address=${person.address}></person-item>
         `)}
       </person-list>
     `;
