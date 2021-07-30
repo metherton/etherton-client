@@ -28,19 +28,17 @@ export class PersonItem extends LitElement {
     return html`
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
-    <div class="w3-container w3-mobile">
-      <div class="w3-container">
-        <div class="w3-card w3-theme-l4">
-          <h2 class="w3-container w3-padding-16 w3-mobile">${this.firstName}&nbsp;${this.surname}</h2>
-          <div class="w3-container w3-mobile" style="display:flex;align-content:space-between;width:100%">
-            <section class="w3-container w3-padding-16 w3-mobile" style="width:50%"><h4>Birth Date</h4>${this.formatBirthDate()}
+      <div class="w3-container w3-mobile">
+        <div class="w3-card w3-margin w3-padding-16 w3-theme-l4">
+          <h2 class="w3-mobile w3-margin">${this.firstName}&nbsp;${this.surname}</h2>
+          <div class="w3-mobile w3-margin" style="display:flex;align-content:space-between;width:100%">
+            <section style="width:50%"><h4>Birth Date</h4>${this.formatBirthDate()}
             </section>
-            <section class="w3-container w3-padding-16 w3-mobile" style="width:50%"><h4>Residence</h4>${this.address}
+            <section style="width:50%"><h4>Residence</h4>${this.address}
             </section>
           </div>
         </div>
-      </div>
-    </div>`;
+      </div>`;
   }
 }
 customElements.define('person-item', PersonItem);

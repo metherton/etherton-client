@@ -1,18 +1,23 @@
 import { LitElement, html, css } from 'lit-element';
 import { PersonList } from './PersonList.js';
 import { PersonItem } from './PersonItem.js';
+import {styleMap} from 'lit-html/directives/style-map.js';
+import {classMap} from 'lit-html/directives/class-map.js';
 
 export class PageSearch extends LitElement {
 
   static get properties() {
     return {
-      persons: {type: Array}
+      persons: {type: Array},
+      showSearch: {type: Boolean}
+
     };
   }
 
   constructor() {
     super();
     this.persons = [];
+    this.showSearch = true;
   }
 
   connectedCallback() {
@@ -51,6 +56,9 @@ export class PageSearch extends LitElement {
     })
     .then(data => {
       this.persons = data;
+      if (this.persons.length > 0) {
+        this.showSearch = false;
+      }
 
     })
     .catch(err => {
@@ -58,11 +66,29 @@ export class PageSearch extends LitElement {
     });
   }
 
+  _showSearch() {
+    this.showSearch = true;
+  }
+
   render() {
+
+    const styles = {
+      display: this.showSearch ? "block" : "none"
+    };
+
+    const stylesButton = {
+      display: this.showSearch ? "none" : "block"
+    };
+
     return html`
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
-      <div class="w3-container w3-margin">
+
+      <div style=${styleMap(stylesButton)} class="w3-container w3-margin w3-mobile">
+        <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
+      </div>
+
+      <div class="w3-container w3-margin" style=${styleMap(styles)}>
 
         <div class="w3-container w3-theme-l4">
           <h2>Search Criteria</h2>
