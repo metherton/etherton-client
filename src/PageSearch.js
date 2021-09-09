@@ -9,8 +9,9 @@ export class PageSearch extends LitElement {
   static get properties() {
     return {
       persons: {type: Array},
-      showSearch: {type: Boolean}
-
+      showSearch: {type: Boolean},
+      firstName: {type: String},
+      surname: {type: String}
     };
   }
 
@@ -18,6 +19,8 @@ export class PageSearch extends LitElement {
     super();
     this.persons = [];
     this.showSearch = true;
+    this.firstName = "";
+    this.surname = "";
   }
 
   connectedCallback() {
@@ -43,9 +46,13 @@ export class PageSearch extends LitElement {
 
   async getPersons() {
     const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/persons', {
-      method: 'GET',
+      method: 'POST',
       credentials: 'include',
-      mode: 'cors'
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({firstName: this.firstName, surname: this.surname})
     });
     return response;
   }
@@ -59,7 +66,7 @@ export class PageSearch extends LitElement {
       if (this.persons.length > 0) {
         this.showSearch = false;
       }
-
+      this.showNumberOfResults = true;
     })
     .catch(err => {
       console.log(err);
@@ -69,6 +76,15 @@ export class PageSearch extends LitElement {
   _showSearch() {
     this.showSearch = true;
   }
+
+  firstNameChanged(ev) {
+    this.firstName = ev.currentTarget.value;
+  }
+
+  surnameChanged(ev) {
+    this.surname = ev.currentTarget.value;
+  }
+
 
   render() {
 
@@ -80,11 +96,19 @@ export class PageSearch extends LitElement {
       display: this.showSearch ? "none" : "block"
     };
 
+    const stylesNumberOfResults = {
+      display: this.showNumberOfResults ? "block" : "none"
+    };
+
     return html`
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
 
-      <div style=${styleMap(stylesButton)} class="w3-container w3-margin w3-mobile">
+      <div style=${styleMap(stylesNumberOfResults)} class="w3-container w3-mobile">
+        <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
+      </div>
+
+      <div style=${styleMap(stylesButton)} class="w3-margin w3-mobile">
         <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
       </div>
 
@@ -96,11 +120,11 @@ export class PageSearch extends LitElement {
         <form class="w3-container">
           <p>
             <label>First Name</label>
-            <input class="w3-input" type="text">
+            <input @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
           </p>
           <p>
             <label>Last Name</label>
-            <input class="w3-input" type="text">
+            <input @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
           </p>
           <p>
             <label>Place your ancestor might have lived</label>
@@ -121,7 +145,8 @@ export class PageSearch extends LitElement {
           .firstName=${person.firstName}
           .surname=${person.surname}
           .birthDate=${person.dateOfBirth}
-          .address=${person.address}></person-item>
+          .address=${person.address}
+          .tree=${person.tree}></person-item>
         `)}
       </person-list>
     `;
