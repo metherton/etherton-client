@@ -47,11 +47,11 @@ export class PersonItem extends LitElement {
     <div class="w3-card w3-text-theme w3-padding-bottom-8">
       <h2 class="w3-mobile w3-margin name">${this.firstName}&nbsp;${this.surname}</h2>
       <div class="w3-mobile w3-container" style="display:flex;align-content:space-between;width:100%">
-        <section style="width:15%"><h4>Birth Date</h4>${this.formatBirthDate()}
+        <section style="width:20%"><h4>Tree</h4>${this.tree}
         </section>
-        <section style="width:70%"><h4>Residence</h4>${this.address}
+        <section style="width:30%"><h4>Birth Date</h4>${this.formatBirthDate()}
         </section>
-        <section style="width:15%"><h4>Tree</h4>${this.tree}
+        <section style="width:50%"><h4>Residence</h4>${this.address}
         </section>
       </div>
     </div>`;

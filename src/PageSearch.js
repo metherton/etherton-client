@@ -20,7 +20,7 @@ export class PageSearch extends LitElement {
     this.persons = [];
     this.showSearch = true;
     this.firstName = "";
-    this.surname = "";
+    this.surname = "etherton";
   }
 
   connectedCallback() {
@@ -104,15 +104,15 @@ export class PageSearch extends LitElement {
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
 
-      <div style=${styleMap(stylesNumberOfResults)} class="w3-container w3-mobile">
+      <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile">
         <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
       </div>
 
-      <div style=${styleMap(stylesButton)} class="w3-margin w3-mobile">
+      <div style=${styleMap(stylesButton)} class="w3-mobile">
         <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
       </div>
 
-      <div class="w3-container w3-margin" style=${styleMap(styles)}>
+      <div class="w3-mobile" style=${styleMap(styles)}>
 
         <div class="w3-container w3-theme-l4">
           <h2>Search Criteria</h2>
