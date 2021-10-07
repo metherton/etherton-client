@@ -6,21 +6,21 @@ export class PageHome extends LitElement {
 
   static get properties() {
     return {
-//      persons: {type: Array}
+      branches: {type: Array}
     };
   }
 
   constructor() {
     super();
-//    this.persons = [];
+    this.branches = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
-//    this.getPersons()
+//    this.getBranches()
 //    .then(response => response.json())
 //    .then(data => {
-//      this.persons = data
+//      this.branches = data
 //    })
 //    .catch(err => {
 //      console.log(err);
@@ -39,19 +39,23 @@ export class PageHome extends LitElement {
 //    });
 //  }
 
-//  async getPersons() {
-//    const response = await fetch(APP_CONFIG.BASE_API_URL + '/persons', {
-//      method: 'GET',
-//      credentials: 'include',
-//      mode: 'cors'
-//    });
-//    return response;
-//  }
+  async getBranches() {
+    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/branches', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    });
+    return response;
+  }
 
   static get styles() {
     return css`
 
     `;
+  }
+
+  blaHome() {
+    console.log('blahome says hi');
   }
 
   formatName(firstName, surname) {

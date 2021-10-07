@@ -104,51 +104,59 @@ export class PageSearch extends LitElement {
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
 
-      <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile">
-        <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
-      </div>
-
-      <div style=${styleMap(stylesButton)} class="w3-mobile">
-        <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
-      </div>
-
-      <div class="w3-mobile" style=${styleMap(styles)}>
-
-        <div class="w3-container w3-theme-l4">
-          <h2>Search Criteria</h2>
+      <section class="w3-margin">
+        <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile">
+          <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
         </div>
-        <form class="w3-container">
-          <p>
-            <label>First Name</label>
-            <input @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
-          </p>
-          <p>
-            <label>Last Name</label>
-            <input @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
-          </p>
-          <p>
-            <label>Place your ancestor might have lived</label>
-            <input class="w3-input" type="text">
-          </p>
-          <p>
-            <label>Birth Year</label>
-            <input class="w3-input" type="text">
-          </p>
-          <p>
-            <input @click=${this._doSearch} class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
-          </p>
-        </form>
-      </div>
-      <person-list>
-        ${this.persons.map(person => html`
-        <person-item
-          .firstName=${person.firstName}
-          .surname=${person.surname}
-          .birthDate=${person.dateOfBirth}
-          .address=${person.address}
-          .tree=${person.tree}></person-item>
-        `)}
-      </person-list>
+
+        <div style=${styleMap(stylesButton)} class="w3-mobile">
+          <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
+        </div>
+
+        <div class="w3-mobile" style=${styleMap(styles)}>
+
+          <div class="w3-mobile w3-theme-l4">
+            <h2>Search Criteria</h2>
+          </div>
+          <form class="w3-mobile">
+            <p>
+              <label for="firstName">First Name</label>
+              <input id="firstName" @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
+            </p>
+            <p>
+              <label for="surname">Last Name</label>
+              <input id="surname" @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
+            </p>
+            <p>
+              <label for="place">Place your ancestor might have lived</label>
+              <input id="place" class="w3-input" type="text">
+            </p>
+            <p>
+              <label for="year">Birth Year</label>
+              <input id="year" class="w3-input" type="text">
+            </p>
+            <p>
+              <input @click=${this._doSearch} class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
+            </p>
+          </form>
+
+        </div>
+        <section class="w3-mobile w3-margin">
+          <person-list>
+            ${this.persons.map(person => html`
+            <person-item
+              .firstName=${person.firstName}
+              .surname=${person.surname}
+              .birthDate=${person.dateOfBirth}
+              .address=${person.address}
+              .tree=${person.tree}></person-item>
+            `)}
+          </person-list>
+        </section>
+
+      </section>
+
+
     `;
   }
 

@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { PageHome } from './PageHome.js';
 import { PageLogin } from './PageLogin.js';
 import { Login } from './login.js';
+import { logInfo } from './logInfo.js';
 
 export class EthertonClient extends LitElement {
 
@@ -27,26 +28,32 @@ export class EthertonClient extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    fetch('/config.json')
-    .then(response => response.json())
-    .then(data => {
-      return window.APP_CONFIG = data
-    })
-//    .then(() => {
-//      return this.getHello();
+//    fetch('/config.json')
+//    .then(response => response.json())
+//    .then(data => {
+//      return window.APP_CONFIG = data
 //    })
 //    .then(() => {
-//      return this.getPersons();
+//      return this.getBranches();
 //    })
 //    .then(response => {
 //      return response.json();
 //    })
 //    .then(data => {
-//      this.persons = data;
+//      this.branches = data;
 //    })
-    .catch(err => {
-      console.log(err);
+//    .catch(err => {
+//      console.log(err);
+//    });
+  }
+
+  async getBranches() {
+    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/branches', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
     });
+    return response;
   }
 
   async getHello() {
@@ -67,10 +74,15 @@ export class EthertonClient extends LitElement {
     return response;
   }
 
+  callme() {
+    logInfo();
+  }
+
   render() {
     return html`
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <main>
+        <h1>Etherton One Name Study</h1>
         ${this._renderPage()}
       </main>`;
   }
@@ -79,7 +91,7 @@ export class EthertonClient extends LitElement {
     switch (this.page) {
       case 'home':
         return html`
-          <page-home .persons='${this.persons}'></page-home>
+          <page-home .branches='${this.branches}' .persons='${this.persons}'></page-home>
         `;
       default:
         return html`

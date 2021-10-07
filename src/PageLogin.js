@@ -142,6 +142,10 @@ export class PageLogin extends LitElement {
   }
 
 
+  bla() {
+    console.log('bla says hi');
+  }
+
   // Example POST method implementation:
   async postData(url = '', data = {}) {
     // Default options are marked with *
