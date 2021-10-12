@@ -14,7 +14,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
             // mock a dependency
             'package-a': '/mocks/package-a.js',
             // mock a module in your own code
-            '/src/logInfo.js': '/mocks/logInfo.js',
+            '/src/Logger.js': '/mocks/Logger.js',
           },
         },
       },

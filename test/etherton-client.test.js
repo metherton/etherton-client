@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { stub } from 'sinon';
-import {logInfo} from '/mocks/logInfo.js';
+import {logInfo} from '/mocks/Logger.js';
 
 import '../src/etherton-client.js';
 

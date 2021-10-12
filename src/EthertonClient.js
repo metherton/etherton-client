@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { PageHome } from './PageHome.js';
 import { PageLogin } from './PageLogin.js';
 import { Login } from './login.js';
-import { logInfo } from './logInfo.js';
+import { logInfo } from './Logger.js';
 
 export class EthertonClient extends LitElement {
 
