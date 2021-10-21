@@ -1,8 +1,8 @@
-export const logInfo = () => {
+const logInfo = () => {
   console.log('log some info');
 }
-export const logError = () => {
+const logError = () => {
   console.log('log some error');
 }
 export { logInfo, logError }
-L
+

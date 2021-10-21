@@ -28,11 +28,11 @@ export class EthertonClient extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-//    fetch('/config.json')
-//    .then(response => response.json())
-//    .then(data => {
-//      return window.APP_CONFIG = data
-//    })
+    fetch('/config.json')
+    .then(response => response.json())
+    .then(data => {
+      return window.APP_CONFIG = data
+    })
 //    .then(() => {
 //      return this.getBranches();
 //    })
@@ -80,9 +80,8 @@ export class EthertonClient extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
       <main>
-        <h1>Etherton One Name Study</h1>
         ${this._renderPage()}
       </main>`;
   }
