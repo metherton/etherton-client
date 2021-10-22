@@ -90,7 +90,7 @@ export class PageHome extends LitElement {
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-deep-orange.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style>
-        body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+        body, h1,h2,h3,h4,h5,h6
         .w3-row-padding img {margin-bottom: 12px}
         /* Set the width of the sidebar to 120px */
         .w3-sidebar {width: 120px;background: #222;}
@@ -103,9 +103,9 @@ export class PageHome extends LitElement {
       <div class="w3-padding-large" id="main">
         <!-- Header/Home -->
         <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-          <h1 class="w3-jumbo"><span class="w3-hide-small">Martin Etherton</h1>
-          <h3 class="w3-jumbo"><span class="w3-hide-small">Full stack developer</h3>
-          <img src="/images/martin.png" alt="me" class="w3-image" width="992" height="1108">
+          <h1 class="w3-jumbo"><span class="w3-hide-small">Martin Etherton</span></h1>
+          <h3 class="w3-jumbo"><span class="w3-hide-small">Full stack developer</span></h3>
+          <img src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
         </header>
       </div>
     `;
