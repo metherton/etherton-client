@@ -33,9 +33,9 @@ export class EthertonClient extends LitElement {
     .then(data => {
       return window.APP_CONFIG = data
     })
-//    .then(() => {
-//      return this.getBranches();
-//    })
+    .then(() => {
+      return this.getBranches();
+    });
 //    .then(response => {
 //      return response.json();
 //    })
@@ -48,7 +48,7 @@ export class EthertonClient extends LitElement {
   }
 
   async getBranches() {
-    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/branches', {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/api/branches', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'
