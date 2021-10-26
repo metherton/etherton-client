@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { PersonList } from './PersonList.js';
 import { PageSearch } from './PageSearch.js';
 
-export class PageHome extends LitElement {
+export class PageAbout extends LitElement {
 
   static get properties() {
     return {
@@ -103,10 +103,8 @@ export class PageHome extends LitElement {
       <!-- Page Content -->
       <div class="w3-padding-large" id="main">
         <!-- Header/Home -->
-        <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-          <h1 class="w3-jumbo"><span class="w3-hide-small">Martin Etherton</span></h1>
-          <h4 class="w3-xxlarge"><span class="w3-hide-small">Full stack developer</span></h3>
-          <img src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
+        <header class="w3-container w3-padding-32 w3-center w3-black" id="about">
+          <h1 class="w3-jumbo"><span class="w3-hide-small">About Me</span></h1>
         </header>
       </div>
     `;
@@ -115,4 +113,4 @@ export class PageHome extends LitElement {
 
 }
 
-customElements.define('page-home', PageHome);
+customElements.define('page-about', PageAbout);

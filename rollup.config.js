@@ -42,7 +42,7 @@ export default merge(baseConfig, {
 
   plugins: [
     copy({
-      targets: [{ src: 'images/**/*', dest: './dist/images' }],
+      targets: [{ src: 'images/**/*', dest: './dist/images' }, { src: 'config.json', dest: './dist' }],
       // set flatten to false to preserve folder structure
       flatten: false,
     }),

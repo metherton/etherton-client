@@ -45,7 +45,7 @@ export class PageSearch extends LitElement {
   }
 
   async getPersons() {
-    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/persons', {
+    const response = await fetch(APP_CONFIG.BASE_API_URL + '/api/persons', {
       method: 'POST',
       credentials: 'include',
       mode: 'cors',
@@ -101,60 +101,76 @@ export class PageSearch extends LitElement {
     };
 
     return html`
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
-
-      <section class="w3-margin">
-        <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile">
-          <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
-        </div>
-
-        <div style=${styleMap(stylesButton)} class="w3-mobile">
-          <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
-        </div>
-
-        <div class="w3-mobile" style=${styleMap(styles)}>
-
-          <div class="w3-mobile w3-theme-l4">
-            <h2>Search Criteria</h2>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-deep-orange.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+        body, h1,h2,h3,h4,h5,h6
+        .w3-row-padding img {margin-bottom: 12px}
+        /* Set the width of the sidebar to 120px */
+        .w3-sidebar {width: 120px;background: #222;}
+        /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+        #main {margin-left: 120px}
+        /* Remove margins from "page content" on small screens */
+        @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+      </style>
+      <!-- Page Content -->
+      <div class="w3-padding-large" id="main">
+        <section class="w3-margin">
+          <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile">
+            <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
           </div>
-          <form class="w3-mobile">
-            <p>
-              <label for="firstName">First Name</label>
-              <input id="firstName" @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
-            </p>
-            <p>
-              <label for="surname">Last Name</label>
-              <input id="surname" @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
-            </p>
-            <p>
-              <label for="place">Place your ancestor might have lived</label>
-              <input id="place" class="w3-input" type="text">
-            </p>
-            <p>
-              <label for="year">Birth Year</label>
-              <input id="year" class="w3-input" type="text">
-            </p>
-            <p>
-              <input @click=${this._doSearch} class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
-            </p>
-          </form>
 
-        </div>
-        <section class="w3-mobile w3-margin">
-          <person-list>
-            ${this.persons.map(person => html`
-            <person-item
-              .firstName=${person.firstName}
-              .surname=${person.surname}
-              .birthDate=${person.dateOfBirth}
-              .address=${person.address}
-              .tree=${person.tree}></person-item>
-            `)}
-          </person-list>
+          <div style=${styleMap(stylesButton)} class="w3-mobile">
+            <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
+          </div>
+
+          <div class="w3-mobile" style=${styleMap(styles)}>
+
+            <div class="w3-mobile w3-theme-l4">
+              <h2>Search Criteria</h2>
+            </div>
+            <form class="w3-mobile">
+              <p>
+                <label for="firstName">First Name</label>
+                <input id="firstName" @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
+              </p>
+              <p>
+                <label for="surname">Last Name</label>
+                <input id="surname" @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
+              </p>
+              <p>
+                <label for="place">Place your ancestor might have lived</label>
+                <input id="place" class="w3-input" type="text">
+              </p>
+              <p>
+                <label for="year">Birth Year</label>
+                <input id="year" class="w3-input" type="text">
+              </p>
+              <p>
+                <input @click=${this._doSearch} class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
+              </p>
+            </form>
+
+          </div>
+          <section class="w3-mobile w3-margin">
+            <person-list>
+              ${this.persons.map(person => html`
+              <person-item
+                .firstName=${person.firstName}
+                .surname=${person.surname}
+                .birthDate=${person.dateOfBirth}
+                .address=${person.address}
+                .tree=${person.tree}></person-item>
+              `)}
+            </person-list>
+          </section>
+
         </section>
 
-      </section>
+      </div>
+
 
 
     `;
