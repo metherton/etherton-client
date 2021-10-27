@@ -183,6 +183,19 @@ export class PageHome extends LitElement {
         @media only screen and (max-width: 600px) {#main {margin-left: 0}}
       </style>
       <!-- Page Content -->
+      <!-- Navbar on small screens (Hidden on medium and large screens) -->
+      <div class="w3-top" id="myNavbar" style="background: white">
+        <div class="w3-bar w3-opacity w3-hover-opacity-off w3-center w3-small">
+          <ul style="list-style-type:none;margin:0;padding:0">
+            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Home</li>
+            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">About</li>
+            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">ONS</li>
+            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Photos</li>
+            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Contact</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="header">
         <h1>Chania</h1>
       </div>
