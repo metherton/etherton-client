@@ -184,7 +184,7 @@ export class PageHome extends LitElement {
       </style>
       <!-- Page Content -->
       <!-- Navbar on small screens (Hidden on medium and large screens) -->
-      <div class="w3-top" id="myNavbar" style="background: white">
+      <div id="myNavbar" style="background: white">
         <div class="w3-bar w3-opacity w3-hover-opacity-off w3-center w3-small">
           <ul style="list-style-type:none;margin:0;padding:0">
             <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Home</li>
