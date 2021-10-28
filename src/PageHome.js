@@ -89,7 +89,12 @@ export class PageHome extends LitElement {
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-deep-orange.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
       <style>
+        .w3-card {
+          box-shadow: none;
+          padding: 10px;
+        }
         * {
           box-sizing: border-box;
         }
@@ -110,12 +115,14 @@ export class PageHome extends LitElement {
         }
 
         .header {
-          background-color: #9933cc;
-          color: #ffffff;
+//          background-color: #9933cc;
+//          color: #ffffff;
           padding: 15px;
         }
 
         .menu ul {
+          background: black;
+          color: white;
           list-style-type: none;
           margin: 0;
           padding: 0;
@@ -124,14 +131,14 @@ export class PageHome extends LitElement {
         .menu li {
           padding: 8px;
           margin-bottom: 7px;
-          background-color: #33b5e5;
-          color: #ffffff;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          background-color: black;
+          color: white;
+//          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
 
-        .menu li:hover {
-          background-color: #0099cc;
-        }
+//        .menu li:hover {
+//          background-color: #0099cc;
+//        }
 
         .aside {
           background-color: #33b5e5;
@@ -184,8 +191,8 @@ export class PageHome extends LitElement {
       </style>
       <!-- Page Content -->
       <!-- Navbar on small screens (Hidden on medium and large screens) -->
-      <div id="myNavbar" style="background: white">
-        <div class="w3-bar w3-opacity w3-hover-opacity-off w3-center w3-small">
+      <div id="myNavbar" style="background: black;color: white; font-weight: bold">
+        <div class="w3-bar w3-center w3-small">
           <ul style="list-style-type:none;margin:0;padding:0">
             <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Home</li>
             <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">About</li>
@@ -196,33 +203,50 @@ export class PageHome extends LitElement {
         </div>
       </div>
 
-      <div class="header">
-        <h1>Chania</h1>
+      <div  style="padding-top: 5px; padding-bottom: 5px" class="header">
+        <h3>Welcome to martinetherton.com</h3>
       </div>
 
       <div class="row">
-        <div class="col-3 menu">
-          <ul>
-          <li>The Flight</li>
-          <li>The City</li>
-          <li>The Island</li>
-          <li>The Food</li>
-          </ul>
+        <div class="col-3">
+          <div class="w3-card">
+            <img style="width: 100%; height: auto" src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
+            <div class="w3-container w3-center">
+              <h3>Martin Etherton</h3>
+              <h5>Full Stack Developer</h5>
+            </div>
+          </div>
         </div>
-
-        <div class="col-6">
-          <h1>The City</h1>
-          <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+        <div class="col-3">
+          <div class="w3-card">
+            <img style="width: 100%; height: auto" src="/images/guildbanner.gif" alt="goons" class="w3-image" width="153" height="395">
+            <div class="w3-container w3-center">
+              <h2>Etherton One Name Study</h2>
+            </div>
+          </div>
         </div>
-
-        <div class="col-3 right">
-          <div class="aside">
-            <h2>What?</h2>
-            <p>Chania is a city on the island of Crete.</p>
-            <h2>Where?</h2>
-            <p>Crete is a Greek island in the Mediterranean Sea.</p>
-            <h2>How?</h2>
-            <p>You can reach Chania airport from all over Europe.</p>
+        <div class="col-3">
+          <div class="w3-card">
+              <h3>Photos</h3>
+              <img style="width: 100%; height: auto" src="/images/pop.png" alt="pop" class="w3-image" width="650" height="1019">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="w3-card">
+            <div class="w3-container w3-center">
+              <h3>Contact Me</h3>
+            </div>
+            <div style="display:flex;justify-content:space-between" class="w3-container">
+              <div>
+                <i class="fa fa-twitter w3-xxlarge"></i>
+              </div>
+              <div>
+                <i class="fa fa-linkedin w3-xxlarge"></i>
+              </div>
+              <div>
+                <i class="fa fa-envelope w3-xxlarge"></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
