@@ -29,6 +29,7 @@ export class EthertonClient extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    //this.addEventListener('navigate', this.navigatePage);
     fetch('/config.json')
     .then(response => response.json())
     .then(data => {
@@ -81,7 +82,7 @@ export class EthertonClient extends LitElement {
 
 
   navigatePage(ev) {
-    this.page = ev.currentTarget.href.split("#")[1];
+    this.page = ev.detail;
     this._renderPage();
   }
 
@@ -114,7 +115,7 @@ export class EthertonClient extends LitElement {
     switch (this.page) {
       case 'home':
         return html`
-          <page-home .branches='${this.branches}' .persons='${this.persons}'></page-home>
+          <page-home @navigate='${this.navigatePage}' .branches='${this.branches}' .persons='${this.persons}'></page-home>
         `;
       case 'about':
         return html`

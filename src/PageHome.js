@@ -6,7 +6,8 @@ export class PageHome extends LitElement {
 
   static get properties() {
     return {
-      branches: {type: Array}
+      branches: {type: Array},
+      page: {type: String}
     };
   }
 
@@ -73,6 +74,11 @@ export class PageHome extends LitElement {
 
   formatBirthDate(birthDate) {
     return new Date(birthDate).toLocaleDateString("en-US");
+  }
+
+  navigatePage(ev) {
+    this.page = ev.currentTarget.id;
+    this.dispatchEvent(new CustomEvent('navigate', { detail: this.page }));
   }
 
 //  render() {
@@ -194,11 +200,11 @@ export class PageHome extends LitElement {
       <div id="myNavbar" style="background: black;color: white; font-weight: bold">
         <div class="w3-bar w3-center w3-small">
           <ul style="list-style-type:none;margin:0;padding:0">
-            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Home</li>
-            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">About</li>
-            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">ONS</li>
-            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Photos</li>
-            <li class="w3-bar-item w3-button" style="display: inline; width:20% !important">Contact</li>
+            <li @click=${this.navigatePage} id="home" class="w3-bar-item w3-button" style="display: inline; width:20% !important">Home</li>
+            <li @click=${this.navigatePage} id="about"  class="w3-bar-item w3-button" style="display: inline; width:20% !important">About</li>
+            <li @click=${this.navigatePage} id="ons" class="w3-bar-item w3-button" style="display: inline; width:20% !important">ONS</li>
+            <li @click=${this.navigatePage} id="photos" class="w3-bar-item w3-button" style="display: inline; width:20% !important">Photos</li>
+            <li @click=${this.navigatePage} id="contact" class="w3-bar-item w3-button" style="display: inline; width:20% !important">Contact</li>
           </ul>
         </div>
       </div>
@@ -212,7 +218,7 @@ export class PageHome extends LitElement {
           <div class="w3-card">
             <img style="width: 100%; height: auto" src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
             <div class="w3-container w3-center">
-              <h3>Martin Etherton</h3>
+              <h1>Martin Etherton</h1>
               <h5>Full Stack Developer</h5>
             </div>
           </div>
@@ -244,6 +250,9 @@ export class PageHome extends LitElement {
                 <i class="fa fa-linkedin w3-xxlarge"></i>
               </div>
               <div>
+                <i class="fa fa-github w3-xxlarge"></i>
+              </div>
+              <div>
                 <i class="fa fa-envelope w3-xxlarge"></i>
               </div>
             </div>
@@ -253,16 +262,6 @@ export class PageHome extends LitElement {
 
       <div class="footer">
         <p>Resize the browser window to see how the content respond to the resizing.</p>
-      </div>
-
-
-      <div class="w3-padding-large" id="main">
-        <!-- Header/Home -->
-        <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-          <h1 class="w3-jumbo"><span class="w3-hide-small">Martin Etherton</span></h1>
-          <h4 class="w3-xxlarge"><span class="w3-hide-small">Full stack developer</span></h3>
-          <img src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
-        </header>
       </div>
     `;
   }
