@@ -197,51 +197,21 @@ export class PageHome extends LitElement {
       </style>
       <!-- Page Content -->
       <!-- Navbar on small screens (Hidden on medium and large screens) -->
-      <div id="myNavbar" style="background: black;color: white; font-weight: bold">
-        <div class="w3-bar w3-center w3-small">
-          <ul style="list-style-type:none;margin:0;padding:0">
-            <li @click=${this.navigatePage} id="home" class="w3-bar-item w3-button" style="display: inline; width:20% !important">Home</li>
-            <li @click=${this.navigatePage} id="about"  class="w3-bar-item w3-button" style="display: inline; width:20% !important">About</li>
-            <li @click=${this.navigatePage} id="ons" class="w3-bar-item w3-button" style="display: inline; width:20% !important">ONS</li>
-            <li @click=${this.navigatePage} id="photos" class="w3-bar-item w3-button" style="display: inline; width:20% !important">Photos</li>
-            <li @click=${this.navigatePage} id="contact" class="w3-bar-item w3-button" style="display: inline; width:20% !important">Contact</li>
-          </ul>
-        </div>
-      </div>
 
       <div  style="padding-top: 5px; padding-bottom: 5px" class="header">
         <h3>Welcome to martinetherton.com</h3>
       </div>
 
       <div class="row">
-        <div class="col-3">
+        <div class="col-6">
           <div class="w3-card">
-            <img style="width: 100%; height: auto" src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
-            <div class="w3-container w3-center">
-              <h1>Martin Etherton</h1>
-              <h5>Full Stack Developer</h5>
-            </div>
+            <img style="width: 100%; height: auto; max-width: 100%" src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
           </div>
         </div>
-        <div class="col-3">
+
+
+        <div class="col-6">
           <div class="w3-card">
-            <img style="width: 100%; height: auto" src="/images/guildbanner.gif" alt="goons" class="w3-image" width="153" height="395">
-            <div class="w3-container w3-center">
-              <h2>Etherton One Name Study</h2>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="w3-card">
-              <h3>Photos</h3>
-              <img style="width: 100%; height: auto" src="/images/pop.png" alt="pop" class="w3-image" width="650" height="1019">
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="w3-card">
-            <div class="w3-container w3-center">
-              <h3>Contact Me</h3>
-            </div>
             <div style="display:flex;justify-content:space-between" class="w3-container">
               <div>
                 <i class="fa fa-twitter w3-xxlarge"></i>
