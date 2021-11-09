@@ -123,10 +123,13 @@ export class PageLondon1 extends LitElement {
       <!-- Page Content -->
       <div class="header" style="background:#000000">
         <div class="w3-row">
-          <div class="w3-col s2"><h5>London 1 Branch</h5></div>
-          <div class="w3-col s1"><h5>></h5></div>
-          <div class="w3-col s2"><h5>Browse</h5></div>
-          <div class="w3-col s7">&nbsp;</div>
+          <h6>
+            <span>London 1 Branch</span>
+            <span>&nbsp;</span>
+            <span>></span>
+            <span>&nbsp;</span>
+            <span>Browse</span>
+          </h6>
         </div>
       </div>
     `;
