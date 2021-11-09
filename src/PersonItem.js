@@ -44,7 +44,7 @@ export class PersonItem extends LitElement {
     return html`
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
-    <div class="w3-text-theme w3-padding-bottom-8">
+    <div style="color:#018786" class="w3-padding-bottom-8">
       <h2 class="w3-mobile name">${this.firstName}&nbsp;${this.surname}</h2>
       <div class="w3-mobile" style="display:flex;align-content:space-between;width:100%">
         <section style="width:20%"><h4>Tree</h4>${this.tree}

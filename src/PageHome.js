@@ -197,42 +197,40 @@ export class PageHome extends LitElement {
       </style>
       <!-- Page Content -->
       <!-- Navbar on small screens (Hidden on medium and large screens) -->
-
-      <div  style="padding-top: 5px; padding-bottom: 5px" class="header">
-        <h3>Welcome to martinetherton.com</h3>
-      </div>
-
-      <div class="row">
-        <div class="col-6">
-          <div class="w3-card">
-            <img style="width: 100%; height: auto; max-width: 100%" src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
-          </div>
+      <main class="w3-animate-left">
+        <div  style="padding-top: 5px; padding-bottom: 5px" class="header">
+          <h3>Welcome to martinetherton.com</h3>
         </div>
 
+        <div class="row">
+          <div class="col-6">
+            <div class="w3-card">
+              <img style="width: 100%; height: auto; max-width: 100%" src="/images/mart.png" alt="me" class="w3-image" width="992" height="1108">
+            </div>
+          </div>
 
-        <div class="col-6">
-          <div class="w3-card">
-            <div style="display:flex;justify-content:space-between" class="w3-container">
-              <div>
-                <i class="fa fa-twitter w3-xxlarge"></i>
-              </div>
-              <div>
-                <i class="fa fa-linkedin w3-xxlarge"></i>
-              </div>
-              <div>
-                <i class="fa fa-github w3-xxlarge"></i>
-              </div>
-              <div>
-                <i class="fa fa-envelope w3-xxlarge"></i>
+
+          <div class="col-6">
+            <div class="w3-card">
+              <div style="display:flex;justify-content:space-between" class="w3-container">
+                <div>
+                  <i class="fa fa-twitter w3-xxlarge"></i>
+                </div>
+                <div>
+                  <i class="fa fa-linkedin w3-xxlarge"></i>
+                </div>
+                <div>
+                  <i class="fa fa-github w3-xxlarge"></i>
+                </div>
+                <div>
+                  <i class="fa fa-envelope w3-xxlarge"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
-      <div class="footer">
-        <p>Resize the browser window to see how the content respond to the resizing.</p>
-      </div>
     `;
   }
 

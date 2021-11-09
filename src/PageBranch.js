@@ -1,12 +1,10 @@
 import { LitElement, html, css } from 'lit-element';
 import { PersonList } from './PersonList.js';
-import { PageBranch } from './PageBranch.js';
-import { PageLondon1 } from './PageLondon1.js';
 import { PersonItem } from './PersonItem.js';
 import {styleMap} from 'lit-html/directives/style-map.js';
 import {classMap} from 'lit-html/directives/class-map.js';
 
-export class PageOns extends LitElement {
+export class PageBranch extends LitElement {
 
   static get properties() {
     return {
@@ -20,7 +18,6 @@ export class PageOns extends LitElement {
 
   constructor() {
     super();
-    this.page = 'branch';
     this.persons = [];
     this.showSearch = true;
     this.firstName = "";
@@ -29,11 +26,6 @@ export class PageOns extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-  }
-
-  toggleSearch(ev) {
-    this.page = "search";
-    this._renderPage();
   }
 
   static get styles() {
@@ -94,32 +86,10 @@ export class PageOns extends LitElement {
     this.surname = ev.currentTarget.value;
   }
 
-
   navigatePage(ev) {
-    this.page = ev.detail;
-    this._renderPage();
+    this.dispatchEvent(new CustomEvent('navigate', { detail: ev.currentTarget.id }));
   }
 
-  _renderPage() {
-    switch (this.page) {
-      case 'branch':
-        return html`
-          <page-branch @navigate="${this.navigatePage}"></page-branch>
-        `;
-      case 'london1':
-        return html`
-          <page-london1></page-london1>
-        `;
-      case 'ons':
-        return html`
-          <page-ons></page-ons>
-        `;
-      default:
-        return html`
-         <page-branch></page-branch>
-        `;
-    }
-  }
 
 
   render() {
@@ -157,23 +127,61 @@ export class PageOns extends LitElement {
         }
       </style>
       <!-- Page Content -->
-      <div class="header">
-        <div class="w3-row">
-          <div class="w3-col s11">
-            <h3>Etherton One Name Study</h3>
-          </div>
-          <div class="w3-col s1" style="display:flex;justify-content: right;align-items: center;height:50px">
-            <i @click=${this.toggleSearch} id="search" class="fa fa-search w3-large" style="float:right;clear: both; cursor: pointer"></i>
+       <main class="w3-animate-left">
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container" style="background:#03DAC6">
+            <h4 style="cursor: pointer" @click=${this.navigatePage} id="london1">London 1 Branch</h4>
+          </header>
+          <div class="w3-container">
+            <p>The oldest common ancestor of this branch is Samuel Etherton, who is believed to have been born in 1814 in London (St.Giles)</p>
+            <p>According to the baptism details his mother was Charlotte Etherton and his father unknown. Charlotte Etherton was born in 1787 in London (St.Giles) and her father was John Atherton, born in 1750 in Wigan, Lancashire</p>
+            <p>Samuel married Mary Rogers of Bristol in 1836, in Bethnal Green, London. They had at least 5 children, 3 of whom survived through to adulthood. Of these, Samuel James Etherton born 1837 in London (St.Luke) is the ancesor whose descendents make up the majority of this tree.</p>
           </div>
         </div>
-      </div>
-
-         ${this._renderPage()}
-
-
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container" style="background:#03DAC6">
+            <h4>USA 1 Branch</h4>
+          </header>
+          <div class="w3-container">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container" style="background:#03DAC6">
+            <h4>London 2 Branch</h4>
+          </header>
+          <div class="w3-container">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container" style="background:#03DAC6">
+            <h4>Sussex 1 Branch</h4>
+          </header>
+          <div class="w3-container">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container" style="background:#03DAC6">
+            <h4>Sussex 2 Branch</h4>
+          </header>
+          <div class="w3-container">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container" style="background:#03DAC6">
+            <h4>Essex 1 Branch</h4>
+          </header>
+          <div class="w3-container">
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </main>
     `;
   }
 
 }
 
-customElements.define('page-ons', PageOns);
+customElements.define('page-branch', PageBranch);

@@ -1,16 +1,13 @@
 import { LitElement, html, css } from 'lit-element';
 import { PersonList } from './PersonList.js';
-import { PageBranch } from './PageBranch.js';
-import { PageLondon1 } from './PageLondon1.js';
 import { PersonItem } from './PersonItem.js';
 import {styleMap} from 'lit-html/directives/style-map.js';
 import {classMap} from 'lit-html/directives/class-map.js';
 
-export class PageOns extends LitElement {
+export class PageLondon1 extends LitElement {
 
   static get properties() {
     return {
-      page: {type: String},
       persons: {type: Array},
       showSearch: {type: Boolean},
       firstName: {type: String},
@@ -20,7 +17,6 @@ export class PageOns extends LitElement {
 
   constructor() {
     super();
-    this.page = 'branch';
     this.persons = [];
     this.showSearch = true;
     this.firstName = "";
@@ -29,11 +25,6 @@ export class PageOns extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-  }
-
-  toggleSearch(ev) {
-    this.page = "search";
-    this._renderPage();
   }
 
   static get styles() {
@@ -95,33 +86,6 @@ export class PageOns extends LitElement {
   }
 
 
-  navigatePage(ev) {
-    this.page = ev.detail;
-    this._renderPage();
-  }
-
-  _renderPage() {
-    switch (this.page) {
-      case 'branch':
-        return html`
-          <page-branch @navigate="${this.navigatePage}"></page-branch>
-        `;
-      case 'london1':
-        return html`
-          <page-london1></page-london1>
-        `;
-      case 'ons':
-        return html`
-          <page-ons></page-ons>
-        `;
-      default:
-        return html`
-         <page-branch></page-branch>
-        `;
-    }
-  }
-
-
   render() {
 
     const styles = {
@@ -151,29 +115,23 @@ export class PageOns extends LitElement {
         /* Remove margins from "page content" on small screens */
         @media only screen and (max-width: 600px) {#main {margin-left: 0}}
         .header {
-          background-color: #6200EE;
+          background-color: #000000;
           color: #ffffff;
-          padding: 15px;
+          padding-left: 15px;
         }
       </style>
       <!-- Page Content -->
-      <div class="header">
+      <div class="header" style="background:#000000">
         <div class="w3-row">
-          <div class="w3-col s11">
-            <h3>Etherton One Name Study</h3>
-          </div>
-          <div class="w3-col s1" style="display:flex;justify-content: right;align-items: center;height:50px">
-            <i @click=${this.toggleSearch} id="search" class="fa fa-search w3-large" style="float:right;clear: both; cursor: pointer"></i>
-          </div>
+          <div class="w3-col s2"><h5>London 1 Branch</h5></div>
+          <div class="w3-col s1"><h5>></h5></div>
+          <div class="w3-col s2"><h5>Browse</h5></div>
+          <div class="w3-col s7">&nbsp;</div>
         </div>
       </div>
-
-         ${this._renderPage()}
-
-
     `;
   }
 
 }
 
-customElements.define('page-ons', PageOns);
+customElements.define('page-london1', PageLondon1);

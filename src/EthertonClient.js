@@ -93,7 +93,6 @@ export class EthertonClient extends LitElement {
     let classes =  { blackwhite: this.page === 'home', whiteblack: this.page !== 'home' };
     return html`
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
       <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-deep-orange.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style>
@@ -128,9 +127,9 @@ export class EthertonClient extends LitElement {
       </div>
 
 
-      <main>
+
         ${this._renderPage()}
-      </main>`;
+      `;
   }
 
   _renderPage() {

@@ -116,63 +116,51 @@ export class PageSearch extends LitElement {
         @media only screen and (max-width: 600px) {#main {margin-left: 0}}
       </style>
       <!-- Page Content -->
-      <div class="w3-padding-large" id="main">
-        <section class="w3-margin">
-          <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile">
-            <h6 class="w3-theme-l2">&nbsp;${this.persons.length} results found</h6>
-          </div>
-
-          <div style=${styleMap(stylesButton)} class="w3-mobile">
-            <a @click=${this._showSearch}  class="w3-button w3-ripple w3-circle w3-theme">+</a>&nbsp;Edit Search
-          </div>
-
-          <div class="w3-mobile" style=${styleMap(styles)}>
-
-            <div class="w3-mobile w3-theme-l4">
-              <h2>Search Criteria</h2>
-            </div>
-            <form class="w3-mobile">
-              <p>
-                <label for="firstName">First Name</label>
-                <input id="firstName" @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
-              </p>
-              <p>
-                <label for="surname">Last Name</label>
-                <input id="surname" @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
-              </p>
-              <p>
-                <label for="place">Place your ancestor might have lived</label>
-                <input id="place" class="w3-input" type="text">
-              </p>
-              <p>
-                <label for="year">Birth Year</label>
-                <input id="year" class="w3-input" type="text">
-              </p>
-              <p>
-                <input @click=${this._doSearch} class="w3-btn w3-block w3-theme-d1" type="button" value="Submit">
-              </p>
-            </form>
-
-          </div>
-          <section class="w3-mobile w3-margin">
-            <person-list>
-              ${this.persons.map(person => html`
-              <person-item
-                .firstName=${person.firstName}
-                .surname=${person.surname}
-                .birthDate=${person.dateOfBirth}
-                .address=${person.address}
-                .tree=${person.tree}></person-item>
-              `)}
-            </person-list>
-          </section>
-
-        </section>
-
+      <div style=${styleMap(stylesButton)} class="w3-mobile w3-row-padding" style="cursor: pointer;">
+        <ul class="w3-ul" style="color:#03DAC6;">
+          <li class="w3-large"><i @click=${this._showSearch} class="fa fa-plus-circle"></i> Edit Search</li>
+        </ul>
       </div>
-
-
-
+      <main class="w3-animate-left" style=${styleMap(styles)} >
+        <div class="w3-row-padding w3-card w3-mobile">
+          <form>
+            <p>
+              <label for="firstName">First Name</label>
+              <input id="firstName" @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
+            </p>
+            <p>
+              <label for="surname">Last Name</label>
+              <input id="surname" @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
+            </p>
+            <p>
+              <label for="place">Place your ancestor might have lived</label>
+              <input id="place" class="w3-input" type="text">
+            </p>
+            <p>
+              <label for="year">Birth Year</label>
+              <input id="year" class="w3-input" type="text">
+            </p>
+            <p>
+              <input style="background:#03DAC6" @click=${this._doSearch} class="w3-btn w3-block" type="button" value="Submit">
+            </p>
+          </form>
+        </div>
+      </main>
+      <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile w3-row-padding" >
+        <h6 style="color:#03DAC6; text-align: center">&nbsp;${this.persons.length} results found</h6>
+      </div>
+      <main class="w3-animate-left w3-row-padding">
+        <person-list>
+          ${this.persons.map(person => html`
+          <person-item
+            .firstName=${person.firstName}
+            .surname=${person.surname}
+            .birthDate=${person.dateOfBirth}
+            .address=${person.address}
+            .tree=${person.tree}></person-item>
+          `)}
+        </person-list>
+      </main>
     `;
   }
 
