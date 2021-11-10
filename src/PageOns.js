@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { PersonList } from './PersonList.js';
 import { PageBranch } from './PageBranch.js';
+import { PageSearch } from './PageSearch.js';
 import { PageLondon1 } from './PageLondon1.js';
 import { PersonItem } from './PersonItem.js';
 import {styleMap} from 'lit-html/directives/style-map.js';
@@ -113,6 +114,10 @@ export class PageOns extends LitElement {
       case 'ons':
         return html`
           <page-ons></page-ons>
+        `;
+      case 'search':
+        return html`
+          <page-search></page-search>
         `;
       default:
         return html`

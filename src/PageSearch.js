@@ -11,7 +11,8 @@ export class PageSearch extends LitElement {
       persons: {type: Array},
       showSearch: {type: Boolean},
       firstName: {type: String},
-      surname: {type: String}
+      surname: {type: String},
+      tree: {type: String}
     };
   }
 
@@ -21,6 +22,7 @@ export class PageSearch extends LitElement {
     this.showSearch = true;
     this.firstName = "";
     this.surname = "etherton";
+    this.tree = "";
   }
 
   connectedCallback() {
@@ -44,8 +46,17 @@ export class PageSearch extends LitElement {
     return new Date(birthDate).toLocaleDateString("en-US");
   }
 
+  treePart() {
+    if (this.tree === "") {
+      return "";
+    } else {
+      return "/" + this.tree;
+    }
+  }
+
   async getPersons() {
-    const response = await fetch(APP_CONFIG.BASE_API_URL + '/api/persons', {
+    const path = APP_CONFIG.BASE_API_URL + '/api/persons' + this.treePart();
+    const response = await fetch(path, {
       method: 'POST',
       credentials: 'include',
       mode: 'cors',
@@ -85,6 +96,9 @@ export class PageSearch extends LitElement {
     this.surname = ev.currentTarget.value;
   }
 
+  treeChanged(ev) {
+    this.tree = ev.currentTarget.value;
+  }
 
   render() {
 
@@ -139,6 +153,10 @@ export class PageSearch extends LitElement {
             <p>
               <label for="year">Birth Year</label>
               <input id="year" class="w3-input" type="text">
+            </p>
+            <p>
+              <label for="tree">Tree</label>
+              <input id="tree" @change="${this.treeChanged}"  class="w3-input" type="text" .value="${this.tree}">
             </p>
             <p>
               <input style="background:#03DAC6" @click=${this._doSearch} class="w3-btn w3-block" type="button" value="Submit">
