@@ -85,6 +85,30 @@ export class PageLondon1 extends LitElement {
     this.surname = ev.currentTarget.value;
   }
 
+  async getPersons() {
+    const response = await fetch(APP_CONFIG.BASE_API_SECURE_URL + '/api/persons/london1', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    });
+    return response;
+  }
+
+  _doSearch() {
+    this.getPersons().then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.persons = data;
+      if (this.persons.length > 0) {
+        this.showSearch = false;
+      }
+      this.showNumberOfResults = true;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
   render() {
 
@@ -128,10 +152,28 @@ export class PageLondon1 extends LitElement {
             <span>&nbsp;</span>
             <span>></span>
             <span>&nbsp;</span>
-            <span>Browse</span>
+            <span @click=${this._doSearch}>Browse</span>
+            <span>></span>
+            <span>&nbsp;</span>
+            <span @click=${this._doSearch}>Photos</span>
           </h6>
         </div>
       </div>
+      <div style=${styleMap(stylesNumberOfResults)} class="w3-mobile w3-row-padding" >
+        <h6 style="color:#03DAC6; text-align: center">&nbsp;${this.persons.length} results found</h6>
+      </div>
+      <main class="w3-animate-left w3-row-padding">
+        <person-list>
+          ${this.persons.map(person => html`
+          <person-item
+            .firstName=${person.firstName}
+            .surname=${person.surname}
+            .birthDate=${person.dateOfBirth}
+            .address=${person.address}
+            .tree=${person.tree}></person-item>
+          `)}
+        </person-list>
+      </main>
     `;
   }
 
