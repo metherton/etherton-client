@@ -45,13 +45,13 @@ export class PersonItem extends LitElement {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
     <div style="color:#018786" class="w3-padding-bottom-8">
-      <h2 class="w3-mobile name">${this.firstName}&nbsp;${this.surname}</h2>
+      <h4 class="w3-mobile name">${this.firstName}&nbsp;${this.surname}</h4>
       <div class="w3-mobile" style="display:flex;align-content:space-between;width:100%">
-        <section style="width:20%"><h4>Tree</h4>${this.tree}
+        <section style="width:20%"><h6>Tree</h6>${this.tree}
         </section>
-        <section style="width:30%"><h4>Birth Date</h4>${this.formatBirthDate()}
+        <section style="width:30%"><h6>Birth Date</h6>${this.formatBirthDate()}
         </section>
-        <section style="width:50%"><h4>Residence</h4>${this.address}
+        <section style="width:50%"><h6>Residence</h6>${this.address}
         </section>
       </div>
     </div><hr>`;

@@ -58,6 +58,18 @@ export class PageBranch extends LitElement {
     return response;
   }
 
+  async tryUpload() {
+    const response = await fetch(APP_CONFIG.BASE_LOGIN_API_URL + '/api/upload', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response;
+  }
+
   _doSearch() {
     this.getPersons().then(response => {
       return response.json();
@@ -90,7 +102,21 @@ export class PageBranch extends LitElement {
     this.dispatchEvent(new CustomEvent('navigate', { detail: ev.currentTarget.id }));
   }
 
-
+  upload() {
+    this.tryUpload().then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.persons = data;
+      if (this.persons.length > 0) {
+        this.showSearch = false;
+      }
+      this.showNumberOfResults = true;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
   render() {
 
@@ -129,8 +155,13 @@ export class PageBranch extends LitElement {
       <!-- Page Content -->
        <main class="w3-animate-left">
         <div class="w3-card-4 w3-container w3-padding-16">
-          <header class="w3-container" style="background:#03DAC6">
-            <h4 style="cursor: pointer" @click=${this.navigatePage} id="london1">London 1 Branch</h4>
+          <header class="w3-container; w3-row" style="background:#03DAC6; padding-left: 16px">
+            <div class="w3-col s11">
+              <h4 style="cursor: pointer" @click=${this.navigatePage} id="london1">London 1 Branch</h4>
+            </div>
+            <div class="w3-col s1" style="display:flex;justify-content: right;align-items: center;height:50px; padding-right: 16px">
+              <i @click=${this.navigatePage} id="upload" class="fa fa-download w3-large" style="float:right;clear: both; cursor: pointer"></i>
+            </div>
           </header>
           <div class="w3-container">
             <p>The oldest common ancestor of this branch is Samuel Etherton, who is believed to have been born in 1814 in London (St.Giles)</p>
