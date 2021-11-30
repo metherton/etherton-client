@@ -46,7 +46,8 @@ export class PageUpload extends LitElement {
     formData.append('surname', this.shadowRoot.getElementById('surname').value);
 
 
-    const path = APP_CONFIG.BASE_API_URL + '/api/upload';
+    //const path = APP_CONFIG.BASE_API_URL + '/api/upload';
+    const path = 'https://www.martinetherton.com' + '/api/upload';
     const response = await fetch(path, {
       credentials: 'include',
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
