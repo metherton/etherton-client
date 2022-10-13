@@ -135,6 +135,7 @@ export class EthertonClient extends LitElement {
   _renderPage() {
     switch (this.page) {
       case 'home':
+        document.dispatchEvent(new CustomEvent('higher-dom', { detail: this.page }));
         return html`
           <page-home @navigate='${this.navigatePage}' .branches='${this.branches}' .persons='${this.persons}'></page-home>
         `;

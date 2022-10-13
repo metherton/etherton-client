@@ -26,6 +26,9 @@ export class PageBranch extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    document.addEventListener('higher-dom', (event) => {
+      console.log("higher-dom event triggered");
+    });
   }
 
   static get styles() {

@@ -54,6 +54,10 @@ export class PageSearch extends LitElement {
     }
   }
 
+  updated(changedProperties) {
+    console.log(changedProperties);
+  }
+
   async getPersons() {
     const path = APP_CONFIG.BASE_API_URL + '/api/persons' + this.treePart();
     const response = await fetch(path, {

@@ -96,24 +96,29 @@ export class PageUpload extends LitElement {
     };
 
     return html`
-    <form id="upload" action="http://localhost:8080/upload" method="post" enctype="multipart/form-data">
-      <p>
-        <label for="file">File</label>
-        <input id="file" @change="${this.fileChanged}" name="myFile" type="file">
-      </p>
-      <p>
-        <label for="firstName">First Name</label>
-        <input id="firstName" @change="${this.firstNameChanged}" class="w3-input" .value="${this.firstName}" type="text">
-      </p>
-      <p>
-        <label for="surname">Last Name</label>
-        <input id="surname" @change="${this.surnameChanged}" class="w3-input" .value="${this.surname}" type="text">
-      </p>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-deep-orange.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <p>
-        <input @click="${this.upload}" style="background:#03DAC6" class="w3-btn w3-block" type="submit" value="Upload">
-      </p>
-    </form>
+    <main class="w3-animate-right">
+        <div class="w3-card-4 w3-container w3-padding-16">
+          <header class="w3-container; w3-row" style="background:#03DAC6; padding-left: 16px">
+            <h4>Upload GEDCOM file</h4>
+          </header>
+          <div class="w3-container">
+            <form id="upload" action="http://localhost:8080/upload" method="post" enctype="multipart/form-data">
+              <p>
+                <input id="file" @change="${this.fileChanged}" name="myFile" type="file">
+              </p>
+              <p>
+                <input @click="${this.upload}" style="background:#03DAC6" class="w3-btn w3-block" type="submit" value="Submit">
+              </p>
+            </form>
+          </div>
+        </div>
+
+
+    </main>
     `;
   }
 
